@@ -19,15 +19,22 @@ builder.Services.AddDbContextPool<AppDbContext>(x => x.UseSqlServer(connectionSt
 // Identity Service
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
 {
+    option.User.AllowedUserNameCharacters = null;
+    option.User.RequireUniqueEmail = true;
+
     option.Password.RequiredLength = 4;
     option.Password.RequireNonAlphanumeric = false;
     option.Password.RequireDigit = false;
     option.Password.RequiredUniqueChars = 3;
     option.Password.RequireLowercase = false;
     option.Password.RequireUppercase = false;
+
+    
+
 }).AddEntityFrameworkStores<AppDbContext>();
 
-builder.Services.AddMvc(config => {
+builder.Services.AddMvc(config =>
+{
     var policy = new AuthorizationPolicyBuilder()
                     .RequireAuthenticatedUser()
                     .Build();

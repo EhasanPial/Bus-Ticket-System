@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width" />
 
 
-    @* <link rel="stylesheet"
-        href="~/lib/bootstrap/css/bootstrap.css" />*@
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/css/bootstrap.css" />
 
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
@@ -38,8 +38,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>@ViewBag.Title</title>
 
@@ -78,24 +76,43 @@
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
         <div class="container">
             <a class="navbar-brand" asp-action="Index"
-            asp-controller="Home">Bangladesh <span>Poribohon</span></a>
+               asp-controller="Home">Bangladesh <span>Poribohon</span></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars"></span> Menu
             </button>
             <div class="collapse navbar-collapse order-sm-start order-lg-last" id="ftco-nav">
                 <ul class="navbar-nav m-auto">
-                    <li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item">
+                        <a asp-action="Index"
+                           asp-controller="Home" class="nav-link">Home</a>
+                    </li>
                     @if (signInManger.IsSignedIn(User))
                     {
-                        <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                         <li class="nav-item">
+                             <a asp-action="logoutCheck"
+                           asp-controller="account" class="nav-link">Logout</a>
+                        </li>
+                       @* <li class="nav-item">
+                        <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
 
+                            <button class="btn bg-transparent"
+                            style="font-family:'Agency FB'">Logout</button>
+                        </form>
+                        </li>*@
+                       
                     }
                     else
                     {
-                        <li class="nav-item"><a asp-action="Login" 
-                            asp-controller="AccountController" class="nav-link">Login</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Register</a></li>
+                        <li class="nav-item">
+                            <a asp-action="Login"
+                           asp-controller="Account" class="nav-link">Login</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-action="Register"
+                           asp-controller="Account" class="nav-link">Register</a>
+                        </li>
                     }
 
 
@@ -119,7 +136,14 @@
         @RenderSection("Scripts", required:true)
 
     }
+    <script type="text/javascript">
+        var e = document.getElementById("logoutID") ;
+        e.onclick = logOut ;
 
+        function logOut(){
+
+        }
+    </script>
 
 </body>
 </html>

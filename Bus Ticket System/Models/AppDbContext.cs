@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,11 +11,10 @@ namespace Bus_Ticket_System.Models
            : base(options)
         {
 
+            //public DbSet<User> Users { get; set; }
+
+
+
         }
-
-        //public DbSet<User> Users { get; set; }
-
-
-
     }
 }

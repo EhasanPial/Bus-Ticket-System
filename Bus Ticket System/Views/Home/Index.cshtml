@@ -1,10 +1,18 @@
-﻿@{
+﻿@using Bus_Ticket_System.Models
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManger;
+
+@{
 
     ViewBag.Title = "Index";
 }
 
 
 
-<div class="card-deck">
-   
-</div>
+
+    @if (signInManger.IsSignedIn(User))
+    {
+        <p>OKKKKKKKKKK</p>
+
+    }
+
