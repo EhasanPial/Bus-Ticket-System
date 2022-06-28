@@ -4,31 +4,87 @@
     ViewBag.Title = "User Login";
 }
 
-<h3>User Login</h3>
 
-<div class="row">
-    <div class="col-md-12">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="RememberMe">
-                        <input asp-for="RememberMe" />
-                        @Html.DisplayNameFor(m => m.RememberMe)
-                    </label>
+
+<link rel="stylesheet"
+      href="~/css/bootstrap/login.css" />
+
+
+<div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2">
+        <img src="~/image/bus.png" />
+        <img width="100%" height="295" src="~/image/bus_2.jpg" />
+    </div>
+    <div class="contents order-2 order-md-1">
+
+        <div class="container" style="font-family: 'Roboto', sans-serif">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7">
+                    <h3>Login to <strong>Bangladesh Poribohon</strong></h3>
+                    <form action="#" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group first">
+                            <label asp-for="Name">Username</label>
+                            <input asp-for="Name" class="form-control" placeholder="your-email@gmail.com" id="username" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group last mb-3">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger" placeholder="Your Password" id="password"></span>
+
+
+                        </div>
+
+                        <div class="d-flex mb-5 align-items-center">
+
+                            <label asp-for="RememberMe" class="caption">
+                                <input type="checkbox" checked="checked" asp-for="RememberMe" />
+                                @Html.DisplayNameFor(m => m.RememberMe)
+
+                            </label>
+
+
+
+
+                        </div>
+
+                        <input type="submit" value="Log In" class="btn btn-block btn-primary">
+
+                    </form>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+        </div>
     </div>
+
+
 </div>
+
+@*Normal login ta*@
+
+@*<div class="row">
+    <div class="col-md-12">
+    <form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <label asp-for="Password"></label>
+    <input asp-for="Password" class="form-control" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+    <div class="checkbox">
+    <label asp-for="RememberMe">
+    <input asp-for="RememberMe" />
+    @Html.DisplayNameFor(m => m.RememberMe)
+    </label>
+    </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    </div>
+    </div>*@

@@ -10,9 +10,63 @@
 
 
 
-    @if (signInManger.IsSignedIn(User))
-    {
-        <p>OKKKKKKKKKK</p>
+@if (signInManger.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <p>OKKKKKKKKKK</p>
 
-    }
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
+<div class="container">
+    <div class="row">
+        <div class="step-div col">
+            <div class="img-div">
+                <img width="200px" height="170px" src="https://i.pinimg.com/564x/cb/53/d6/cb53d64ab92af6ef49098ece2976ea5e.jpg" alt="Bangladesh Poribohon">
+            </div>
+            <div class="heading">
+                <b>Search</b>
+            </div>
+            <div class="description-div">
+                Choose your origin, destination, journey dates and search for buses
+            </div>
+        </div>
+        <div class="step-div col">
+            <div class="img-div">
+                <img src="https://eticket.railway.gov.bd/v2/assets/img/home/select.svg" alt="Step two of Bangladesh Railway purchase ticket">
+            </div>
+            <div class="heading-div">
+                <b>Select</b>
+            </div>
+            <div class="description-div">
+                Easy to select seat
+            </div>
+        </div>
+        <div class="step-div col">
+            <div class="img-div">
+                <img width="150px" height="150px" src="~/image/payment.jpg" alt="Step three of Bangladesh Railway purchase ticket">
+            </div>
+            <div class="heading-div">
+                <b>Pay</b>
+            </div>
+            <div class="description-div">
+                Pay for the tickets via Debit / Credit Cards or MFS
+            </div>
+        </div>
+    </div>
+
+
+</div>

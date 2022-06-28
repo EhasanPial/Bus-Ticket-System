@@ -7,12 +7,15 @@
 
 
     <link rel="stylesheet"
-          href="~/lib/bootstrap/css/bootstrap.css" />
+          href="~/lib/bootstrap/css/bootstrap.min.css" />
 
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600&family=Roboto:ital,wght@0,100;0,400;1,100;1,500;1,700;1,900&family=Source+Serif+Pro:wght@300&display=swap" rel="stylesheet">
 
 
 
@@ -20,6 +23,8 @@
 
     <link rel="stylesheet"
           href="~/css/style.css" />
+    <link rel="stylesheet"
+          href="~/css/site.css" />
 
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/popper.js"></script>
@@ -52,84 +57,96 @@
     </li>
 
     }*@
-<body>
+<body style="background-color:#fff;">
 
-
-    <div class="wrap">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col">
-                    <p class="mb-0 phone"><span class="fa fa-phone"></span> <a href="#">+8801705821821</a></p>
-                </div>
-                <div class="col d-flex justify-content-end">
-                    <div class="social-media">
-                        <p class="mb-0 d-flex">
-                            <a href="https://facebook.com/nirobe.pial" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
-                            <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
-                        </p>
+    <div class="container-lg pial">
+        <div class="wrap">
+            <div class="container-lg">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <p class="mb-0 phone"><span class="fa fa-phone"></span> <a href="#">+8801705821821</a></p>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <div class="social-media">
+                            <p class="mb-0 d-flex">
+                                <a href="https://facebook.com/nirobe.pial" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-        <div class="container">
-            <a class="navbar-brand" asp-action="Index"
-               asp-controller="Home">Bangladesh <span>Poribohon</span></a>
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" asp-action="Index"
+                   asp-controller="Home">Bangladesh <span>Poribohon</span></a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="fa fa-bars"></span> Menu
-            </button>
-            <div class="collapse navbar-collapse order-sm-start order-lg-last" id="ftco-nav">
-                <ul class="navbar-nav m-auto">
-                    <li class="nav-item">
-                        <a asp-action="Index"
-                           asp-controller="Home" class="nav-link">Home</a>
-                    </li>
-                    @if (signInManger.IsSignedIn(User))
-                    {
-                         <li class="nav-item">
-                             <a asp-action="logoutCheck"
-                           asp-controller="account" class="nav-link">Logout</a>
-                        </li>
-                       @* <li class="nav-item">
-                        <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
-
-                            <button class="btn bg-transparent"
-                            style="font-family:'Agency FB'">Logout</button>
-                        </form>
-                        </li>*@
-                       
-                    }
-                    else
-                    {
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse order-sm-start order-lg-last" id="ftco-nav">
+                    <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a asp-action="Login"
-                           asp-controller="Account" class="nav-link">Login</a>
+                            <a asp-action="Index"
+                               asp-controller="Home" class="nav-link">Home</a>
                         </li>
+                        @if (signInManger.IsSignedIn(User))
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                               
+                             <li class="nav-item">
+                                    <a asp-action="Index"
+                               asp-controller="AdminPanel" class="nav-link">Admin Panel</a>
+                                </li>
 
-                        <li class="nav-item">
-                            <a asp-action="Register"
-                           asp-controller="Account" class="nav-link">Register</a>
-                        </li>
-                    }
+                            }
+                            <li class="nav-item">
+                                <a asp-action="logoutCheck"
+                               asp-controller="account" class="nav-link">Logout</a>
+                            </li>
+                            @* <li class="nav-item">
+                                <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
+
+                                <button class="btn bg-transparent"
+                                style="font-family:'Agency FB'">Logout</button>
+                                </form>
+                                </li>*@
+
+                        }
+
+                        else
+                        {
+                             <li class="nav-item">
+                                    <a asp-action="login"
+                               asp-controller="Account" class="nav-link">Login</a>
+                                </li>
+
+                            <li class="nav-item">
+                                <a asp-action="Register"
+                               asp-controller="Account" class="nav-link">Register</a>
+                            </li>
+
+                        }
 
 
 
-                </ul>
+
+                    </ul>
+                </div>
             </div>
+        </nav>
+        <!-- END nav -->
+
+        <div>
+
+            @RenderBody()
+
         </div>
-    </nav>
-    <!-- END nav -->
-
-    <div>
-
-        @RenderBody()
 
     </div>
-
-
 
     @if (IsSectionDefined("Scripts"))
     {

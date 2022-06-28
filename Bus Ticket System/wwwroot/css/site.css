@@ -1,0 +1,8 @@
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 16px;
+     
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}

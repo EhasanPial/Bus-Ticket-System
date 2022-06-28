@@ -1,0 +1,51 @@
+﻿@model Bus
+@{
+    ViewBag.Title = "All Buses";
+}
+
+
+<div class="container">
+
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-sm-1">
+                <label class="form-label" asp-for="Type"></label>
+                <input class="form-control form-control-sm" asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-sm-1">
+                <label class="form-label" asp-for="Cost"></label>
+                <input class="form-control form-control-sm" asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-1">
+
+                <label class="form-label" asp-for="From"></label>
+                <div class="col-sm-2">
+                    <select asp-for="From" class="custom-select mr-sm-2"
+                            asp-items="Html.GetEnumSelectList<Route>()"></select>
+                </div>
+
+
+            </div>
+            <div class="col-sm-1">
+                <label class="form-label" asp-for="To"></label>
+                <div class="col-sm-2">
+                    <select asp-for="To" class="custom-select mr-sm-2"
+                            asp-items="Html.GetEnumSelectList<Route>()"></select>
+                </div>
+            </div>
+
+
+            <div style="margin-top:15px">
+
+                <button type="submit" class="btn btn-primary btn-group-sm">Add New Bus</button>
+            </div>
+        </div>
+    </form>
+</div>

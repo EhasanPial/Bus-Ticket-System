@@ -5,8 +5,8 @@ namespace WebApplication3.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

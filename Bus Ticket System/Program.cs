@@ -21,6 +21,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
 {
     option.User.AllowedUserNameCharacters = null;
     option.User.RequireUniqueEmail = true;
+    option.SignIn.RequireConfirmedPhoneNumber = false;
+    option.SignIn.RequireConfirmedEmail = false;    
+    option.SignIn.RequireConfirmedAccount = false;
 
     option.Password.RequiredLength = 4;
     option.Password.RequireNonAlphanumeric = false;

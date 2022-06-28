@@ -68,9 +68,9 @@ namespace WebApplication3.Controllers
         }
         [Route("logoutCheck")]
 
-        public IActionResult LogoutCheck()
+        public async Task<IActionResult> LogoutCheck()
         {
-            Logout();
+            await Logout();
             return RedirectToAction("index", "home");
         }
 
@@ -93,7 +93,7 @@ namespace WebApplication3.Controllers
             if (ModelState.IsValid)
             {
 
-                var result = await signInManager.PasswordSignInAsync(loginViewModel.Email, loginViewModel.Password,
+                var result = await signInManager.PasswordSignInAsync(loginViewModel.Name, loginViewModel.Password,
                     loginViewModel.RememberMe, false);
 
                 if (!string.IsNullOrEmpty(returnUrl))
@@ -102,8 +102,16 @@ namespace WebApplication3.Controllers
                 }
                 else
                 {
+                    // redirect to admin panel 
                     if (result.Succeeded)
-                        return RedirectToAction("index", "home");
+                        if (User.IsInRole("Admin"))
+                        {
+                            return RedirectToAction("Index", "AdminPanel");
+                        }
+                        else
+                        {
+                            return RedirectToAction("index", "home");
+                        }
                     else
                         ModelState.AddModelError(String.Empty, "Invalid Login Attempt");
                 }
