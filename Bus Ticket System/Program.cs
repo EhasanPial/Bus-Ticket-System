@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc().AddXmlSerializerFormatters();
+builder.Services.AddScoped<IBusDBRepository, ClassBusDBRepository>();
 
 // Database
 var connectionString = builder.Configuration.GetConnectionString("BusDBConnection");
@@ -19,6 +20,7 @@ builder.Services.AddDbContextPool<AppDbContext>(x => x.UseSqlServer(connectionSt
 // Identity Service
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
 {
+
     option.User.AllowedUserNameCharacters = null;
     option.User.RequireUniqueEmail = true;
     option.SignIn.RequireConfirmedPhoneNumber = false;

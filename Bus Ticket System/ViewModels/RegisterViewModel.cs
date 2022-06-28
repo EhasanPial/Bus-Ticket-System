@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication3.ViewModels
+namespace Bus_Ticket_System.ViewModels
 {
     public class RegisterViewModel
     {

@@ -1,8 +1,26 @@
-﻿@model Bus
+﻿@using Bus_Ticket_System.ViewModels
+@model BusAndListBusViewModel
 @{
     ViewBag.Title = "All Buses";
 }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
+<link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="~/css/Admin/AdminBus.scss">
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
 
 <div class="container">
 
@@ -10,33 +28,33 @@
         <div asp-validation-summary="All" class="text-danger"></div>
 
         <div class="row">
-            <div class="col-sm-1">
-                <label class="form-label" asp-for="Type"></label>
-                <input class="form-control form-control-sm" asp-for="Type" class="form-control" />
-                <span asp-validation-for="Type" class="text-danger"></span>
+            <div class="col-sm-2">
+                <label class="form-label" asp-for="@Model.bus.Type"></label>
+                <input class="form-control form-control-sm" asp-for="@Model.bus.Type" class="form-control" />
+                <span asp-validation-for="@Model.bus.Type" class="text-danger"></span>
             </div>
 
 
-            <div class="col-sm-1">
-                <label class="form-label" asp-for="Cost"></label>
-                <input class="form-control form-control-sm" asp-for="Cost" class="form-control" />
-                <span asp-validation-for="Cost" class="text-danger"></span>
+            <div class="col-sm-3">
+                <label class="form-label" asp-for="@Model.bus.Cost"></label>
+                <input class="form-control form-control-sm" asp-for="@Model.bus.Cost" class="form-control" />
+                <span asp-validation-for="@Model.bus.Cost" class="text-danger"></span>
             </div>
 
-            <div class="col-sm-1">
+            <div class="col-2">
 
-                <label class="form-label" asp-for="From"></label>
-                <div class="col-sm-2">
-                    <select asp-for="From" class="custom-select mr-sm-2"
+                <label class="form-label" asp-for="@Model.bus.From"></label>
+                <div>
+                    <select asp-for="@Model.bus.From" class="custom-select" style="max-width:90%"
                             asp-items="Html.GetEnumSelectList<Route>()"></select>
                 </div>
 
 
             </div>
-            <div class="col-sm-1">
-                <label class="form-label" asp-for="To"></label>
-                <div class="col-sm-2">
-                    <select asp-for="To" class="custom-select mr-sm-2"
+            <div class="col-2">
+                <label class="form-label" asp-for="@Model.bus.To"></label>
+                <div>
+                    <select asp-for="@Model.bus.To" class="custom-select" style="max-width:90%"
                             asp-items="Html.GetEnumSelectList<Route>()"></select>
                 </div>
             </div>
@@ -49,3 +67,67 @@
         </div>
     </form>
 </div>
+    <div class="content">
+
+        <div class="container">
+
+            <div class="table-responsive">
+
+                <table class="table custom-table">
+                    <thead>
+
+                        <tr>
+                            
+                            <th scope="col">ID</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col">Cost</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (@Model.Buses != null)
+                            {
+                                foreach (Bus bus in Model.Buses)
+                                {
+                                    <tr>
+                                        <td>
+                                            @bus.Id
+                                        </td>
+                                        @{
+                                            if (bus.Type == 1)
+                                            {
+                                                <td>AC</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Non AC</td>
+
+                                            }
+                                        }
+
+                                        <td>
+                                            @bus.From
+
+                                        </td>
+                                        <td>@bus.To</td>
+                                        <td>@bus.Cost</td>
+                                    </tr>
+
+                                }
+                            }
+
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+

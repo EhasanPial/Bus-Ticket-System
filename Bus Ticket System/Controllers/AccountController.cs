@@ -1,11 +1,10 @@
 ﻿using Bus_Ticket_System.Models;
+using Bus_Ticket_System.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication3.Models;
-using WebApplication3.ViewModels;
 
-namespace WebApplication3.Controllers
+namespace Bus_Ticket_System.Controllers
 {
     [AllowAnonymous]
     [Route("[controller]")]
