@@ -17,15 +17,23 @@
 <!-- Style -->
 <link rel="stylesheet" href="~/css/Admin/AdminBus.scss">
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<script>
+    $('#timepicker').timepicker({
+        uiLibrary: 'bootstrap4'
+    });
+</script>
+
+
+
 
 <div class="container">
 
     <form method="post">
-        <div asp-validation-summary="All" class="text-danger"></div>
+
 
         <div class="row">
             <div class="col-sm-2">
@@ -59,75 +67,136 @@
                 </div>
             </div>
 
+            <div class="col-sm-3">
+                <label class="form-label" asp-for="@Model.bus.Time"></label>
+                <input asp-for="@Model.bus.Time" style="width:70%" id="timepicker" width="276" class="form-control form-control-sm" />
+
+                <span asp-validation-for="@Model.bus.Time" class="text-danger"></span>
+
+            </div>
+
 
             <div style="margin-top:15px">
 
-                <button type="submit" class="btn btn-primary btn-group-sm">Add New Bus</button>
+                <button type="submit" class="btn btn-success btn-group-sm">Add New Bus</button>
             </div>
         </div>
     </form>
 </div>
-    <div class="content">
-
-        <div class="container">
-
-            <div class="table-responsive">
-
-                <table class="table custom-table">
-                    <thead>
-
-                        <tr>
-                            
-                            <th scope="col">ID</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">From</th>
-                            <th scope="col">To</th>
-                            <th scope="col">Cost</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            if (@Model.Buses != null)
-                            {
-                                foreach (Bus bus in Model.Buses)
-                                {
-                                    <tr>
-                                        <td>
-                                            @bus.Id
-                                        </td>
-                                        @{
-                                            if (bus.Type == 1)
-                                            {
-                                                <td>AC</td>
-                                            }
-                                            else
-                                            {
-                                                <td>Non AC</td>
-
-                                            }
-                                        }
-
-                                        <td>
-                                            @bus.From
-
-                                        </td>
-                                        <td>@bus.To</td>
-                                        <td>@bus.Cost</td>
-                                    </tr>
-
-                                }
-                            }
-
-                        }
 
 
-                    </tbody>
-                </table>
+<br>
+<br>
+
+
+
+<div class="container">
+
+    <form asp-action="Bus" method="get">
+        <div class="row form-actions no-color col-lg-12">
+
+            <div class="col-3">
+                <label class="form-label">From</label>
+
+                <select name="SearchFrom" class="custom-select"
+                        asp-items="Html.GetEnumSelectList<Route>()"></select>
+
+
+            </div>
+
+            <div class="col-3">
+                <label class="form-label">Destiantion</label>
+                <select name="SearchTo" class="custom-select"
+                        asp-items="Html.GetEnumSelectList<Route>()"></select>
             </div>
 
 
-        </div>
+            @* <div class="col-sm-3">
+                Start: <select name="SearchFrom" class="custom-select" style="max-width:50%"
+                asp-items="Html.GetEnumSelectList<Route>()"></select>
+                </div>
+                <div class="col-sm-3">
+                Destination: <select name="SearchTo" class="custom-select" style="max-width:50%"
+                asp-items="Html.GetEnumSelectList<Route>()"></select>
+                </div>*@
 
+
+
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-1"><input type="submit" value="Search" class="btn btn-dark" /> </div>
+
+            <div class="col-sm-1"><a class="btn btn-outline-dark" asp-action="Bus">Clear</a></div>
+        </div>
+    </form>
+    <br>
+    <br>
+
+
+    <div class="table-responsive">
+
+        <table class="table custom-table">
+            <thead class="bg-dark text-white">
+
+                <tr>
+
+                    <th scope="col"> <a asp-action="Bus" asp-route-sortOrder="@ViewData["IdSortParam"]">ID</a></th>
+                    <th scope="col">TYPE</th>
+                    <th scope="col">FROM</th>
+                    <th scope="col">TO</th>
+                    <th scope="col">JOURNEY TIME</th>
+                    <th scope="col"><a asp-action="Bus" asp-route-sortOrder="@ViewData["CostSortParam"]">COST</a></th>
+                    <th scope="col">Action</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (@Model.Buses != null)
+                    {
+                        int i = 0;
+                        foreach (Bus bus in Model.Buses)
+                        {
+                            <tr>
+                                <td>
+                                    @bus.Id
+                                </td>
+                                @{
+                                    if (bus.Type == 1)
+                                    {
+                                        <td>AC</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Non AC</td>
+
+                                    }
+                                }
+
+                                <td>
+                                    @bus.From
+
+                                </td>
+                                <td>@bus.To</td>
+                                <td>@bus.Time.Hour:@bus.Time.Minute</td>
+                                <td>@bus.Cost</td>
+                                <td><div><a class="col-sm-1" asp-action="Edit"  asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
+                                <a class="col-sm-1" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a></div></td>
+                            </tr>
+
+                        }
+                    }
+
+                }
+
+
+            </tbody>
+        </table>
     </div>
+
+
+</div>
+
+
 

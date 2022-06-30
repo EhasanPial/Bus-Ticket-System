@@ -1,0 +1,57 @@
+﻿@model Bus
+
+<div class="container">
+
+     
+
+    <form method="post">
+
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label class="form-label" asp-for="Type"></label>
+                <input class="form-control form-control-sm" asp-for="Type" class="form-control" placeholder="Type" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-sm-3">
+                <label class="form-label" asp-for="Cost"></label>
+                <input class="form-control form-control-sm" asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+
+                <label class="form-label" asp-for="From"></label>
+                <div>
+                    <select asp-for="From" class="custom-select" style="max-width:90%"
+                            asp-items="Html.GetEnumSelectList<Route>()"></select>
+                </div>
+
+
+            </div>
+            <div class="col-2">
+                <label class="form-label" asp-for="To"></label>
+                <div>
+                    <select asp-for="To" class="custom-select" style="max-width:90%"
+                            asp-items="Html.GetEnumSelectList<Route>()"></select>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <label class="form-label" asp-for="Time"></label>
+                <input asp-for="Time" style="width:70%" id="timepicker" width="276" class="form-control form-control-sm" />
+
+                <span asp-validation-for="Time" class="text-danger"></span>
+
+            </div>
+
+
+            <div style="margin-top:15px">
+
+                <button type="submit" class="btn btn-success btn-group-sm">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>

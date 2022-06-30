@@ -13,5 +13,9 @@ namespace Bus_Ticket_System.Models
         public Route From { get; set; }
         
         public Route To { get; set; }
+
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        public DateTime Time { get; set; }
     }
 }

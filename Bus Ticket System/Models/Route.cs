@@ -2,6 +2,7 @@
 {
     public enum Route
     {
+        Select,
         Dhaka,
         Dinajpur,
         Khulna,

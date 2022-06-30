@@ -3,12 +3,15 @@ namespace Bus_Ticket_System.Models
 {
     public class ClassBusDBRepository : IBusDBRepository
     {
-        private readonly AppDbContext context;
+        public readonly AppDbContext context;
         public ClassBusDBRepository(AppDbContext appDb)
         {
             this.context = appDb;
         }
-
+        public AppDbContext GetDbContext()
+        {
+            return context;
+        }
         public Bus Add(Bus? newBus)
         {
             context.Buses.Add(newBus);
