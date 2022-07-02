@@ -54,7 +54,7 @@
                                 asp-items="Html.GetEnumSelectList<Route>()"></select>
                     </div>
                     <div class="box">
-                        <label><span>Destiantion</span></label>
+                        <label><span>Destination</span></label>
                         <select name="SearchTo" class="custom-select"
                                 asp-items="Html.GetEnumSelectList<Route>()"></select>
                     </div>
@@ -80,11 +80,11 @@
                     <div class="box">
                         <label><span></span></label>
 
-                         <button type="submit" class="flex1">
+                        <button type="submit" class="flex1">
                             <span>Find Bus</span>
                             <i class="fas fa-arrow-circle-right"></i>
                         </button>
-                       
+
                     </div>
                 </div>
             </form>
@@ -96,106 +96,33 @@
     <section class="about" id="about">
         <div class="container">
             <div class="heading">
-                <h5>EXPLORE</h5>
+                <h5>Explore</h5>
                 <h2>
-                    We are cool to give you pleasure
+                    Our fecilities
                 </h2>
             </div>
 
             <div class="content flex  top">
                 <div class="left">
                     <h3>
-                        As much as comfort want to get from us everything
+                        Cover all Bangladesh Routes
                     </h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Only our bus service is available in all routes of Bangladesh.
+                        Day by day popularity of our company is increasing.
                     </p>
-                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <button class="flex1">
-                        <span>Check Availability</span>
+                    <p>Do you want to checkout our available buses?</p>
+                    <button class="flex2">
+                        <a asp-action="searchBus" class="text-white">Check All Bus</a>
                         <i class="fas fa-arrow-circle-right"></i>
                     </button>
                 </div>
-                <div class="right">
-                    <img src="image/a.png" alt="">
+                <div class="">
+                    <img src="https://www.sustainable-bus.com/wp-content/uploads/2019/12/Schermata-2019-12-06-alle-09.59.28.png" alt="" width="674px" height="347px" />
                 </div>
             </div>
         </div>
     </section>
-
-
-    <section class="wrapper">
-        <div class="container">
-            <div class="owl-carousel owl-theme">
-                <div class="item">
-                    <div class="heading">
-                        <h5>THE CITY VIEW</h5>
-                        <h3>A charming view of the city</h3>
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-                <div class="item">
-                    <div class="heading">
-                        <h5>THE CITY VIEW</h5>
-                        <h3>A charming view of the city</h3>
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-                <div class="item">
-                    <div class="heading">
-                        <h5>THE CITY VIEW</h5>
-                        <h3>A charming view of the city</h3>
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                    <p>
-                        Duis
-                        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
-    <script>
-        $('.owl-carousel').owlCarousel({
-          loop: true,
-          margin: 10,
-          nav: true,
-          dots: false,
-          navText: ["<i class='far fa-long-arrow-alt-left'></i>", "<i class='far fa-long-arrow-alt-right'></i>"],
-          responsive: {
-            0: {
-              items: 1
-            },
-            768: {
-              items: 1
-            },
-            1000: {
-              items: 1
-            }
-          }
-        })
-    </script>
 
 
     <section class="wrapper2">
@@ -281,29 +208,6 @@
         </div>
     </section>
 
-    <section class="timer about wrapper">
-        <div class="background"> </div>
-        <div class="container">
-            <div class="heading">
-                <h5>LAST MINUTE!</h5>
-                <h2> <span>Incredible!</span> Are you coming today</h2>
-            </div>
-
-            <div id="time" class="flex1 mtop"> </div>
-        </div>
-    </section>
-    <script src="js/jquery.countdown.js" charset="utf-8"></script>
-    <script src="js/jquery.countdown.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-        $('#time').countdown('2024/01/01', function(event) {
-          $(this).html(event.strftime(
-            '<div class="clock"><span>%d</span> <p>Days</p></div> ' +
-            '<div class="clock"><span>%H</span> <p>Hours</p></div> ' +
-            '<div class="clock"><span>%M</span> <p>Minutes</p></div> ' +
-            '<div class="clock"><span>%S</span> <p>Seconds</p></div> '
-          ));
-        });
-    </script>
 
 
     <section class="offer mtop" id="services">

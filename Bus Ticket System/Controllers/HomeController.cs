@@ -21,16 +21,18 @@ namespace Bus_Ticket_System.Controllers
         }
 
 
-        [Route("~/")] // "localhost:5000/"   // root of website
-        [Route("")] // "localhost:5000/home" [Route("/Home")]  
+       // [Route("~/")] // "localhost:5000/"   // root of website
+       // [Route("")] // "localhost:5000/home" [Route("/Home")]  
         [Route("[action]")]  // localhost:5000/home/index
         [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
-       
-        [Route("Index2")]  // localhost:5000/home/index
+
+        [Route("~/")] // "localhost:5000/"   // root of website
+        [Route("")] // "localhost:5000/home" [Route("/Home")]  
+        [Route("[action]")]  // localhost:5000/home/index
         [AllowAnonymous]
         public IActionResult Index2()
         {
