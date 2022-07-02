@@ -8,13 +8,7 @@
 
     <link rel="stylesheet"
           href="~/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-    <link rel="stylesheet" href="~/css/Home/index2.css">
 
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -29,8 +23,6 @@
 
     <link rel="stylesheet"
           href="~/css/style.css" />
-
-
     <script src="~/js/jquery.min.js"></script>
     <script src="~/js/popper.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
@@ -48,6 +40,12 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+    @*--------------*FONT AWSOME-----------------*@
+
+
+    <script src="~/lib/font-awesome/css/all.css"></script>
+    <script src="~/lib/font-awesome/js/all.js"></script>
+
 
     <title>@ViewBag.Title</title>
 
@@ -64,24 +62,26 @@
     }*@
 <body style="background-color:#fff;">
 
-    <div class="pial">
-        <section class="head bg-black">
-            <div class="container flex1 bg-black ">
-                <div class="wrap" style="margin-left:8px; margin-right:8px">
-                    <a href="https://facebook.com/nirobe.pial"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/ehasan.pial"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instragram.com/ehasan.pial"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="logo">
-                    <img src="image/logo.png" alt="">
-                </div>  
-                <div class="address" style="margin-left:8px; margin-right:8px">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Fulbari Gate, Khulna</span>
+    <div class="container-lg pial">
+        <div class="wrap">
+            <div class="container-lg">
+                <div class="row justify-content-between">
+                    <div class="col">
+                        <p class="mb-0 phone"><span class="fa fa-phone"></span> <a href="#">+8801705821821</a></p>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <div class="social-media">
+                            <p class="mb-0 d-flex">
+                                <a href="https://facebook.com/nirobe.pial" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        <div class="sticky-toggle">
+        </div>
+        <div class="container-lg pial">
             <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
                 <div class="container">
                     <a class="navbar-brand" asp-action="Index"
@@ -106,13 +106,6 @@
                                    asp-controller="AdminPanel" class="nav-link">Admin Panel</a>
                                     </li>
 
-                                }
-                                else
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="PurchaseHistory"
-                                   asp-controller="Home" class="nav-link">Purchase History</a>
-                                    </li>
                                 }
                                 <li class="nav-item">
                                     <a asp-action="logoutCheck"

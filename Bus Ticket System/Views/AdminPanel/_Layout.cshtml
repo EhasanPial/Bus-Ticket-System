@@ -100,20 +100,11 @@
 
 
         @if (IsSectionDefined("Scripts"))
-        {
+        {   
             @RenderSection("Scripts", required:true)
 
         }
-        <script type="text/javascript">
-            var e = document.getElementById("logoutID") ;
-            e.onclick = logOut ;
-
-            function logOut(){
-
-            }
-        </script>
-
-
+ 
 
     </div>
 

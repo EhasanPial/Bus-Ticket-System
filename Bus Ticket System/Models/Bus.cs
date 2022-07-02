@@ -6,7 +6,7 @@ namespace Bus_Ticket_System.Models
     {
         [Key]
         public int Id { get; set; }
-        public int Type { get; set; }
+        public BusType Type { get; set; }
 
         public int Cost { get; set; }
 

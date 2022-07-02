@@ -38,8 +38,11 @@
         <div class="row">
             <div class="col-sm-2">
                 <label class="form-label" asp-for="@Model.bus.Type"></label>
-                <input class="form-control form-control-sm" asp-for="@Model.bus.Type" class="form-control" />
-                <span asp-validation-for="@Model.bus.Type" class="text-danger"></span>
+                <div>
+                    <select asp-for="@Model.bus.Type" class="custom-select" style="max-width:90%"
+                            asp-items="Html.GetEnumSelectList<BusType>()"></select>
+                </div>
+
             </div>
 
 
@@ -155,25 +158,16 @@
                 @{
                     if (@Model.Buses != null)
                     {
-                        int i = 0;
+
                         foreach (Bus bus in Model.Buses)
                         {
                             <tr>
                                 <td>
                                     @bus.Id
                                 </td>
-                                @{
-                                    if (bus.Type == 1)
-                                    {
-                                        <td>AC</td>
-                                    }
-                                    else
-                                    {
-                                        <td>Non AC</td>
-
-                                    }
-                                }
-
+                                <td>
+                                    @bus.Type
+                                </td>
                                 <td>
                                     @bus.From
 
@@ -181,8 +175,12 @@
                                 <td>@bus.To</td>
                                 <td>@bus.Time.Hour:@bus.Time.Minute</td>
                                 <td>@bus.Cost</td>
-                                <td><div><a class="col-sm-1" asp-action="Edit"  asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
-                                <a class="col-sm-1" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a></div></td>
+                                <td>
+                                    <div>
+                                        <a class="col-sm-1" asp-action="Edit" asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
+                                        <a class="col-sm-1" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                    </div>
+                                </td>
                             </tr>
 
                         }
