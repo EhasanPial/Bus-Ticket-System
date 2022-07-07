@@ -45,7 +45,7 @@ namespace Bus_Ticket_System.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("index2", "home");
                 }
 
                 foreach (var error in result.Errors)
@@ -63,14 +63,14 @@ namespace Bus_Ticket_System.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("index2", "home");
         }
         [Route("logoutCheck")]
 
         public async Task<IActionResult> LogoutCheck()
         {
             await Logout();
-            return RedirectToAction("index", "home");
+            return RedirectToAction("index2", "home");
         }
 
 
@@ -105,11 +105,12 @@ namespace Bus_Ticket_System.Controllers
                     if (result.Succeeded)
                         if (User.IsInRole("Admin"))
                         {
-                            return RedirectToAction("Index", "AdminPanel");
+                            return RedirectToAction("Index2", "AdminPanel");
                         }
                         else
                         {
-                            return RedirectToAction("index", "home");
+                            return RedirectToAction("index2" +
+                                "", "home");
                         }
                     else
                         ModelState.AddModelError(String.Empty, "Invalid Login Attempt");

@@ -24,6 +24,60 @@
 
 
 
+
+     <section class="home" id="home">
+        <div class="container">
+            <h1 class="text-white">BD Poribohon</h1>
+            <p class="text-white">Bangladesh's one of the largest bus company</p>
+
+            <form asp-action="SearchBus" method="get">
+                <div class="content grid">
+                    <div class="box">
+                        <label><span>Start Point:</span></label>
+
+                        <select name="SearchFrom" class="custom-select"
+                                asp-items="Html.GetEnumSelectList<Route>()"></select>
+                    </div>
+                    <div class="box">
+                        <label><span>Destination:</span></label>
+
+                        <select name="SearchTo" class="custom-select"
+                                asp-items="Html.GetEnumSelectList<Route>()"></select>
+                    </div>
+                    <div class="box">
+                        <label><span>Choose Class:</span></label>
+
+                        <select name="SeachBusType" class="custom-select"
+                                asp-items="Html.GetEnumSelectList<BusType>()"></select>
+                    </div>
+                    <div class="box">
+                        <div class="input-group date" id="datepicker">
+                            <label><span>Choose Date:</span></label>
+                            <div class="row">
+                                <input class="col-8  text-center border-3" name="datePassing" type="text">
+                                <span class="col text-center input-group-append">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <label><span></span></label>
+
+                        <button type="submit" class="flex1">
+                            <span>Find Bus</span>
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
     <form asp-action="SearchBus" method="get">
         <div class="row form-actions no-color col-lg-12">
 

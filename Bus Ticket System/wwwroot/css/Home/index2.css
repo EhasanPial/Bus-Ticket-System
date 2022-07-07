@@ -1,6 +1,10 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
+:root {
+    --primary: #593196;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -228,7 +232,6 @@ header.sticky {
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-   
 }
 
 .home {
@@ -273,7 +276,7 @@ input {
 }
 
 button {
-    background: #CC8C18;
+    background: #593196;
     color: white;
     padding: 10px 20px;
     outline: none;
@@ -452,7 +455,7 @@ p {
 /*------------wrapper2------------*/
 .wrapper2 {
     position: relative;
-    text-align: center;
+
 }
 
     .wrapper2 .grid {
@@ -463,12 +466,15 @@ p {
         box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
         padding: 20px;
         transition: 0.5s;
+        padding:0px;
+        margin:10px;
     }
 
     .wrapper2 i {
         margin: 10px 0 15px 0;
-        color: #CC8C18;
+        color: #593196;
         font-size: 30px;
+        padding:10px;
     }
 
     .wrapper2 h3 {
@@ -477,23 +483,50 @@ p {
 
     .wrapper2 span {
         padding: 10px;
-        background: #F5E8D1;
-        color: #CC8C18;
+        background: #593196;
+        color: white;
         border-radius: 50%;
+        float: right;
+        clear: both;
+        margin: 0 10px 10px 0; 
     }
 
+    .wrapper2 .card-header {
+        background: #593196;
+        color: white;
+        text-align: center;
+       
+    }
+
+    .wrapper2 .card-body {
+        text-align: left;
+    }
+
+
     .wrapper2 .box:hover {
-        background: #CC8C18;
+        background: #593196;
         cursor: pointer;
     }
 
         .wrapper2 .box:hover span {
-            background: #fff;
+            background: white;
+            color: #593196;
+        }
+
+        .wrapper2 .box:hover .card-header {
+            background: white;
+            color: #593196;
+        }
+
+        .wrapper2 .box:hover i {
+            background: white;
+            color: #593196;
         }
 
         .wrapper2 .box:hover p,
         .wrapper2 .box:hover h3,
-        .wrapper2 .box:hover i {
+        .wrapper2 .box:hover i,
+        .wrapper2 .box:hover {
             color: white;
         }
 
@@ -510,14 +543,77 @@ p {
         z-index: 2;
     }
 
-/*------------wrapper2------------*/
+/*------------wrapper3------------*/
 /*------------room------------*/
-.room {
-    margin-bottom: 50px;
+
+
+.wrapper3 {
     position: relative;
 }
 
-    .room.wrapper2::after {
+    .wrapper3 .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .wrapper3 .box {
+        box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
+        padding: 20px;
+        transition: 0.5s;
+        padding: 0px;
+        margin: 10px;
+    }
+
+.wrapper3::after {
+    content: '';
+    position: absolute;
+    top: -22%;
+    left: 0;
+    background-image: url("../image/line1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 75px;
+    width: 100%;
+    z-index: 2;
+}
+    .wrapper3 i {
+        margin: 10px 0 15px 0;
+        color: #593196;
+        font-size: 30px;
+        padding: 10px;
+    }
+
+    .wrapper3 h3 {
+        font-size: 20px;
+    }
+
+    .wrapper3 span {
+        padding: 10px;
+        background: #593196;
+        color: white;
+        border-radius: 50%;
+        float: right;
+        clear: both;
+        margin: 0 10px 10px 0;
+    }
+
+    .wrapper3 .card-header {
+        background: #593196;
+        color: white;
+        text-align: left;
+    }
+
+    .wrapper3 .card-body {
+        text-align: left;
+    }
+
+
+.room {
+    margin-bottom: 50px;
+    position: relative;
+    text-align:center;
+}
+
+    .room.wrapper3::after {
         display: none;
         top: 105%;
         background-image: url("../image/line2.png");
@@ -530,16 +626,24 @@ p {
 }
 
 .room img {
-    width: 100%;
-    height: 100%;
     margin-left: 20px;
 }
 
-.room h3 {
-    margin: 0;
-    padding: 0;
+.room test {
+    width: 50px;
+    height: 50px;
 }
 
+.room h3 {
+    margin: 10px;
+    padding: 10px;
+}
+
+.room box{
+    padding:10px;
+    margin:10px; 
+}
+ 
 /*------------room------------*/
 /*------------timer------------*/
 .timer {

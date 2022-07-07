@@ -26,9 +26,9 @@
 
 
     @*------------ NAV BAR --------------*@
-
-    <link rel="stylesheet"
-          href="~/css/style.css" />
+    @*
+        <link rel="stylesheet"
+        href="~/css/style.css" />*@
 
 
     <script src="~/js/jquery.min.js"></script>
@@ -41,7 +41,7 @@
 
 
 
-
+    <script src="https://kit.fontawesome.com/01070b9a85.js" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -64,99 +64,86 @@
     }*@
 <body style="background-color:#fff;">
 
-    <div class="pial">
-        <section class="head bg-black">
-            <div class="container flex1 bg-black ">
-                <div class="wrap" style="margin-left:8px; margin-right:8px">
-                    <a href="https://facebook.com/nirobe.pial"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/ehasan.pial"><i class="fab fa-twitter"></i></a>
-                    <a href="https://instragram.com/ehasan.pial"><i class="fab fa-instagram"></i></a>
-                </div>
-                <div class="logo">
-                    <img src="image/logo.png" alt="">
-                </div>  
-                <div class="address" style="margin-left:8px; margin-right:8px">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Fulbari Gate, Khulna</span>
-                </div>
-            </div>
-        </section>
-        <div class="sticky-toggle">
-            <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-                <div class="container">
-                    <a class="navbar-brand" asp-action="Index"
-                       asp-controller="Home">Bangladesh <span>Poribohon</span></a>
 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="fa fa-bars"></span> Menu
-                    </button>
-                    <div class="collapse navbar-collapse order-sm-start order-lg-last" id="ftco-nav">
-                        <ul class="navbar-nav m-auto">
-                            <li class="nav-item">
-                                <a asp-action="Index"
-                                   asp-controller="Home" class="nav-link">Home</a>
-                            </li>
-                            @if (signInManger.IsSignedIn(User))
+    <div class="sticky-toggle">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="ftco-navbar">
+            <div class="container">
+                <a class="navbar-brand" asp-action="Index2"
+                   asp-controller="Home">Bangladesh <span>Poribohon</span></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="fa fa-bars"></span> Menu
+                </button>
+                <div class="collapse navbar-collapse order-sm-start order-lg-last" id="ftco-nav">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item">
+                            <a asp-action="Index2"
+                               asp-controller="Home" class="nav-link active">
+                                Home
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        @if (signInManger.IsSignedIn(User))
+                        {
+                            @if (User.IsInRole("Admin"))
                             {
-                                @if (User.IsInRole("Admin"))
-                                {
 
-                                    <li class="nav-item">
-                                        <a asp-action="Index"
-                                   asp-controller="AdminPanel" class="nav-link">Admin Panel</a>
-                                    </li>
-
-                                }
-                                else
-                                {
-                                    <li class="nav-item">
-                                        <a asp-action="PurchaseHistory"
-                                   asp-controller="Home" class="nav-link">Purchase History</a>
-                                    </li>
-                                }
                                 <li class="nav-item">
-                                    <a asp-action="logoutCheck"
-                                   asp-controller="account" class="nav-link">Logout</a>
+                                    <a asp-action="Index2"
+                               asp-controller="AdminPanel" class="nav-link">Admin Panel</a>
                                 </li>
-                                @* <li class="nav-item">
-                                    <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
-
-                                    <button class="btn bg-transparent"
-                                    style="font-family:'Agency FB'">Logout</button>
-                                    </form>
-                                    </li>*@
 
                             }
-
                             else
                             {
                                 <li class="nav-item">
-                                    <a asp-action="login"
-                                   asp-controller="Account" class="nav-link">Login</a>
+                                    <a asp-action="PurchaseHistory"
+                               asp-controller="Home" class="nav-link">Purchase History</a>
                                 </li>
-
-                                <li class="nav-item">
-                                    <a asp-action="Register"
-                                   asp-controller="Account" class="nav-link">Register</a>
-                                </li>
-
                             }
+                            <li class="nav-item">
+                                <a asp-action="logoutCheck"
+                               asp-controller="account" class="nav-link">Logout</a>
+                            </li>
+                            @* <li class="nav-item">
+                                <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
+
+                                <button class="btn bg-transparent"
+                                style="font-family:'Agency FB'">Logout</button>
+                                </form>
+                                </li>*@
+
+                        }
+
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-action="login"
+                               asp-controller="Account" class="nav-link">Login</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a asp-action="Register"
+                               asp-controller="Account" class="nav-link">Register</a>
+                            </li>
+
+                        }
 
 
 
 
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
-            </nav>
-        </div>
-        <!-- END nav -->
+            </div>
+        </nav>
+    </div>
+    <!-- END nav -->
 
-        <div>
+    <div>
 
-            @RenderBody()
+        @RenderBody()
 
-        </div>
+    </div>
 
     </div>
 
@@ -173,6 +160,61 @@
 
         }
     </script>
+
+
+    <footer>
+
+        <div class="content row ">
+            <div class="col">
+                <div class="logo">
+                    <img src="image/logo.png" alt="">
+                </div>
+                <h2>About Us</h2>
+                <p>A high comfort bus service in Bangladesh.We give high quality service at reasonable price. Online booking and return ticket service is availble 24/7.</p>
+                <div class="social flex">
+                    <a class="text-white" href="https://fb.com/nirobe.pial"><i class="fab fa-facebook-f"></i></a>
+                    <a class="text-white" href="https://twitter.com/ehasan_pial"><i class="fab fa-twitter"></i></a>
+                    <a class="text-white" href="https://instagram.com/ehasan.pial"><i class="fab fa-instagram"></i></a>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="col">
+                <h2>Services</h2>
+                <div class="icon flex">
+                    <div class="i">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>Fulbari Gate, KUET, Khulna</p>
+                    </div>
+                </div>
+                <div class="icon flex">
+                    <div class="i">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                        <p>+880-17058-21821</p>
+                    </div>
+                </div>
+                <div class="icon flex">
+                    <div class="i">
+                        <i class="far fa-envelope"></i>
+                    </div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>pial1807040@stud.kuet.ac.bd</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
 
 </body>
 </html>

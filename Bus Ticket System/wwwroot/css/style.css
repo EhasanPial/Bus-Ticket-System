@@ -78,7 +78,7 @@ hr {
 }
 
 button-transparent {
-    background-color: transparent;
+    background-color: #593196;
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
@@ -11548,7 +11548,7 @@ h1, h2, h3, h4, h5,
 }
 
 .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-    font-size: 11px;
+    font-size: 14px;
     padding-top: 2rem;
     padding-bottom: 2rem;
     padding-left: 20px;

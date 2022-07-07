@@ -36,7 +36,19 @@ namespace Bus_Ticket_System.Controllers
         [AllowAnonymous]
         public IActionResult Index2()
         {
-            return View();
+            IEnumerable<Bus> allBus = _busDBRepository.GetAllBus();
+           /* Enum dhaka = Models.Route.Dhaka;
+            for (int i = 0; i < allBus.Count(); i++)
+            {
+                if(!allBus.ElementAt(i).From.Equals(dhaka))
+                {
+                    allBus.ToList().RemoveAt(i);
+                }
+            }
+
+            Console.WriteLine(allBus.Count());*/
+
+            return View(allBus);
         }
 
 
@@ -53,7 +65,7 @@ namespace Bus_Ticket_System.Controllers
 
             Enum x = Models.Route.Select;
             Enum selectBusType = Models.BusType.SELECT;
-            if (!SearchFrom.Equals(x) && !SearchTo.Equals(x) && !SeachBusType.Equals(selectBusType))
+            if (!SearchFrom.Equals(x)  && !SeachBusType.Equals(selectBusType))
 
                 allBus = allBus.Where(bus => bus.From.Equals(SearchFrom) && bus.To.Equals(SearchTo) && bus.Type.Equals(SeachBusType)
 
