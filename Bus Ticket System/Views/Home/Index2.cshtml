@@ -14,19 +14,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+   
 
 </head>
 
-@*// -- Data picker JS --- //*@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script>
-    $(function() {
-              $('#datepicker').datepicker();
-          });
+    $( function() {
+      $( "#datepicker" ).datepicker({minDate:0});
+    } );
 </script>
 
 <body>
@@ -48,37 +47,40 @@
             <p class="text-white">Bangladesh's one of the largest bus company</p>
 
             <form asp-action="SearchBus" method="get">
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="content grid">
                     <div class="box">
                         <label><span>Start Point:</span></label>
+                        <br>
+                        <select name="SearchFrom" class="form-select" required
+                                asp-items="Html.GetEnumSelectList<Route>()">
+                            <option selected value="">Please Select</option>
+                        </select>
 
-                        <select name="SearchFrom" class="custom-select"
-                                asp-items="Html.GetEnumSelectList<Route>()"></select>
                     </div>
                     <div class="box">
                         <label><span>Destination:</span></label>
-
-                        <select name="SearchTo" class="custom-select"
-                                asp-items="Html.GetEnumSelectList<Route>()"></select>
+                        <br />
+                        <select name="SearchTo" class="form-select" required
+                                asp-items="Html.GetEnumSelectList<Route>()">
+                            <option selected value="">Please Select</option>
+                        </select>
                     </div>
                     <div class="box">
                         <label><span>Choose Class:</span></label>
-
-                        <select name="SeachBusType" class="custom-select"
-                                asp-items="Html.GetEnumSelectList<BusType>()"></select>
+                        <br>
+                        <select   name="SeachBusType" class="form-select" required
+                                asp-items="Html.GetEnumSelectList<BusType>()">
+                            <option selected value="">Please Select</option>
+                        </select>
                     </div>
                     <div class="box">
-                        <div class="input-group date" id="datepicker">
-                            <label><span>Choose Date:</span></label>
-                            <div class="row">
-                                <input class="col-8  text-center border-3" name="datePassing" type="text">
-                                <span class="col text-center input-group-append">
-                                    <span class="input-group-text bg-white">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
+
+                        <label><span>Choose Date:</span></label>
+
+                        <input id="datepicker" class="form-control" name="datePassing" type="text" placeholder="" required />
+
+
                     </div>
                     <div class="box">
                         <label><span></span></label>
@@ -116,7 +118,9 @@
                     </p>
                     <p>Do you want to checkout our available buses?</p>
                     <button class="flex2">
-                        <a asp-action="searchBus" class="text-white">Check All Bus</a>
+                        <a asp-action="SearchBus" asp-route-SearchFrom="" 
+                        asp-route-SearchTo="" asp-route-SeachBusType="" asp-route-datePassing=@DateTime.Now.Date 
+                        class="text-white">Check All Bus</a>
                         <i class="fas fa-arrow-circle-right"></i>
                     </button>
                 </div>
@@ -137,27 +141,39 @@
 
 
             <div class="content grid mtop">
-                @foreach (Bus bus in Model)
-                {
-                    Enum dhaka = Route.Dhaka;
-                    if (!bus.From.Equals(dhaka)) continue;
-                    <div class="box card text-white" style="text-align:left">
 
-                        <a asp-action="searchBus" asp-route-SearchFrom=1 asp-route-SearchTo=2 asp-route-SeachBusType=1 asp-route-datePassing=@DateTime.Now.Date class="text-white">
-                            <div class="card-header">
-                                @bus.From    To    @bus.To
+                @{
+                    if (Model.Count() <= 0)
+                    {
+                        <p>No bus</p>
+                    }
+                    else
+                    {
+
+                        @foreach (Bus bus in @Model)
+                        {
+                            Enum dhaka = Route.Dhaka;
+                            if (!bus.From.Equals(dhaka)) continue;
+                            <div class="box card text-white" style="text-align:left">
+
+                                <a asp-action="searchBus" asp-route-SearchFrom=@bus.From asp-route-SearchTo=@bus.To asp-route-SeachBusType=@bus.Type asp-route-datePassing=@DateTime.Now.Date class="text-white">
+                                    <div class="card-header">
+                                        @bus.From    To    @bus.To
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-text">
+                                            <p>Type: @bus.Type</p>
+                                            <p>Cost: @bus.Cost TK</p>
+                                        </div>
+
+                                    </div>
+
+                                    <span class='far fa-long-arrow-alt-right' style="text-align:right"></span>
+                                </a>
                             </div>
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <p>Type: @bus.Type</p>
-                                    <p>Cost: @bus.Cost TK</p>
-                                </div>
+                        }
+                    }
 
-                            </div>
-
-                            <span class='far fa-long-arrow-alt-right' style="text-align:right"></span>
-                        </a>
-                    </div>
                 }
 
             </div>

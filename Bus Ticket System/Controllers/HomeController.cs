@@ -21,8 +21,8 @@ namespace Bus_Ticket_System.Controllers
         }
 
 
-       // [Route("~/")] // "localhost:5000/"   // root of website
-       // [Route("")] // "localhost:5000/home" [Route("/Home")]  
+        // [Route("~/")] // "localhost:5000/"   // root of website
+        // [Route("")] // "localhost:5000/home" [Route("/Home")]  
         [Route("[action]")]  // localhost:5000/home/index
         [AllowAnonymous]
         public IActionResult Index()
@@ -37,23 +37,28 @@ namespace Bus_Ticket_System.Controllers
         public IActionResult Index2()
         {
             IEnumerable<Bus> allBus = _busDBRepository.GetAllBus();
-           /* Enum dhaka = Models.Route.Dhaka;
-            for (int i = 0; i < allBus.Count(); i++)
-            {
-                if(!allBus.ElementAt(i).From.Equals(dhaka))
-                {
-                    allBus.ToList().RemoveAt(i);
-                }
-            }
 
-            Console.WriteLine(allBus.Count());*/
+
+            /* Enum dhaka = Models.Route.Dhaka;
+             for (int i = 0; i < allBus.Count(); i++)
+             {
+                 if(!allBus.ElementAt(i).From.Equals(dhaka))
+                 {
+                     allBus.ToList().RemoveAt(i);
+                 }
+             }
+
+             Console.WriteLine(allBus.Count());*/
 
             return View(allBus);
         }
 
 
+
+
+
         [Route("SearchBus")]
-        public async Task<IActionResult> SearchBus(Models.Route SearchFrom, Models.Route SearchTo, Models.BusType SeachBusType, DateTime datePassing)
+        public async Task<IActionResult> SearchBus(Models.Route? SearchFrom, Models.Route? SearchTo, Models.BusType? SeachBusType, DateTime datePassing)
         {
 
             ViewData["FromFilter"] = SearchFrom;
@@ -63,16 +68,8 @@ namespace Bus_Ticket_System.Controllers
                          select s
                          ;
 
-            Enum x = Models.Route.Select;
-            Enum selectBusType = Models.BusType.SELECT;
-            if (!SearchFrom.Equals(x)  && !SeachBusType.Equals(selectBusType))
-
-                allBus = allBus.Where(bus => bus.From.Equals(SearchFrom) && bus.To.Equals(SearchTo) && bus.Type.Equals(SeachBusType)
-
-
-                );
-
-
+            if (SearchFrom != null)
+                allBus = allBus.Where(bus => bus.From.Equals(SearchFrom) && bus.To.Equals(SearchTo) && bus.Type.Equals(SeachBusType));
 
 
             IEnumerable<Bus> buses = await allBus.AsNoTracking().ToListAsync();
@@ -80,7 +77,7 @@ namespace Bus_Ticket_System.Controllers
             BusBookingViewModel viewModel = new BusBookingViewModel
             {
                 Buses = buses,
-                DateTime = datePassing
+                datePassing = datePassing
             };
             ModelState.Remove("SearchFrom");
             ModelState.Remove("SearchTo");
@@ -94,7 +91,7 @@ namespace Bus_Ticket_System.Controllers
         [Route("/SearchBus/{id}")]
         public IActionResult Purchase(int id, BusBookingViewModel viewModel)
         {
-            viewModel.busId = id; 
+            viewModel.busId = id;
 
             return View(viewModel);
         }

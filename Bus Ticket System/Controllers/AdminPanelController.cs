@@ -39,14 +39,14 @@ namespace Bus_Ticket_System.Controllers
             var allBus = from s in _context.Buses
                          select s;
 
-            Enum x = Models.Route.Select;
-            if (!SearchFrom.Equals(x) && !SearchTo.Equals(x))
+           // Enum x = Models.Route.Select;
+            /*if (!SearchFrom.Equals(x) && !SearchTo.Equals(x))
 
                 allBus = allBus.Where(bus => bus.From.Equals(SearchFrom) && bus.To.Equals(SearchTo)
 
 
                 );
-
+*/
 
             switch (sortOrder)
             {
