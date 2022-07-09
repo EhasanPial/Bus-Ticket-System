@@ -1,0 +1,26 @@
+﻿@model List<Ticket>
+
+<link rel="stylesheet" href="~/css/Home/purchase_history.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="container-sm">
+    @{
+        foreach (Ticket userTicket in Model)
+        {
+            <div class="outside_rec">
+                <div class="inside_rec">
+                     <p>Ticket Number: @userTicket.id</p>
+                </div>
+            </div>
+            <p>
+                @userTicket.busId @userTicket.userId @userTicket.cost @userTicket.currentAva @userTicket.From @userTicket.To @userTicket.name @userTicket.purchaseTime
+                @userTicket.busTime
+            </p>
+
+        }
+    }
+
+
+</div>

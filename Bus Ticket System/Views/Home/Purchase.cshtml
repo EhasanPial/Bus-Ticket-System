@@ -1,4 +1,71 @@
-﻿@model BusBookingViewModel
+﻿@model PurchaseViewModel
+
+<link rel="stylesheet" href="~/css/Home/bus_ticket.css">
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<p>@Model.busId @Model.datePassing</p>
+
+<style>
+
+
+</style>
+
+<div class="rec_main container-sm rounded mb-lg-5 ">
+    <p class="bd_pori mt-4 mb-4">TICKET</p>
+
+    <div class="row_x row bg-light p-lg-2 mb-2">
+        <span class="col-3 font-weight-bolder">Passenger Name:</span>
+        <p class="col-1"></p>
+        <span class="col-4 details_x">@Model.name</span>
+
+    </div>
+    <div class="row_x row bg-light p-lg-2 mb-2">
+        <span class="col-3 font-weight-bolder">From:</span>
+        <p class="col-1"></p>
+        <span class="col-4 details_x">@Model.bus.From</span>
+
+    </div>
+    <div class="row_x row bg-light p-lg-2 mb-2">
+        <span class="col-3 font-weight-bolder">To:</span>
+        <p class="col-1"></p>
+        <span class="col-4 details_x">@Model.bus.To</span>
+
+    </div>
+    <div class="row_x row bg-light p-lg-2 mb-2">
+        <span class="col-3 font-weight-bolder">Seat No:</span>
+        <p class="col-1"></p>
+        <span class="col-4 details_x">@Model.currentAva</span>
+
+    </div>
+    <div class="row_x row bg-light p-lg-2 mb-2">
+        <span class="col-3 font-weight-bolder">Cost:</span>
+        <p class="col-1"></p>
+        <span class="col-4 details_x">@Model.bus.Cost TK</span>
+
+    </div>
+    <div class="row_x row bg-light p-lg-2 mb-2">
+        <span class="col-3 font-weight-bolder">Journey Time:</span>
+        <p class="col-1"></p>
+        <span class="col-4 details_x">@Model.bus.Time</span>
+
+    </div>
+
+
+
+
+
+
+    <form method="post" asp-action="purchase">
+        <input asp-for=@Model.busId type="hidden" value=@Model.busId />
+        <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
+        <input asp-for=@Model.name type="hidden" value=@Model.name />
+        <input asp-for=@Model.userId type="hidden" value=@Model.userId />
+        <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
+         
+         
+            <button class="btn rounded bg-primary text-white" style="float:right; margin-right:109px; margin-top:12px" type="submit" value="">Confirm</button>
+        
+    </form>
+
+</div>

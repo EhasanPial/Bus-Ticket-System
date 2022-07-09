@@ -1,0 +1,67 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box
+}
+
+
+.rec_main {
+    width: 74%;
+    height: 493px;
+    background: #FFFEFE;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    margin-top: 3%;
+}
+
+.bd_pori {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 29px;
+    justify-content: center;
+    margin-top: 15px;
+    border-bottom: 5px solid #593196;
+    color: #000000;
+    text-align: center;
+    width: fit-content;
+    margin: auto auto;
+}
+
+
+.row_x {
+    width: 80%;
+    height: 39px;
+    background-color: #F5F5F5;
+    padding: 15px;
+    margin: auto
+}
+
+.title {
+    width: 124px;
+    height: 16px;
+    font-family: 'Cascadia Code';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: flex-end;
+    color: #000000;
+}
+
+details_x {
+    width: 33px;
+    height: 16px;
+    font-family: 'Cascadia Code';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    align-items: flex-end;
+    color: #000000;
+}

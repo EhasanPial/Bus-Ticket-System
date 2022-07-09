@@ -16,6 +16,13 @@ namespace Bus_Ticket_System.Models
 
 
         }
+
         public DbSet<Bus> Buses { get; set; }
+       
+        public DbSet<BusSeatNew> BusSeatsNew { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+
+        
+
     }
 }

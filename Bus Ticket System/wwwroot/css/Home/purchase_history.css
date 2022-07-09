@@ -1,0 +1,16 @@
+﻿.inside_rec {
+    width: 777px;
+    height: 119px;
+    background: #FFFEFE;
+    border: 1px dashed #DDDDDD;
+    border-radius: 9px;
+}
+
+.outside_rec {
+    
+    width: 811px;
+    height: 147px;
+    background: #FCFCFC;
+    border: 6px dashed #F5F5F5;
+    border-radius: 9px;
+}

@@ -95,6 +95,11 @@ namespace Bus_Ticket_System.Controllers
                 if ((busAndListBus.bus.From != busAndListBus.bus.To))
                 {
                     _busDBRepository.Add(busAndListBus.bus);
+                    _busDBRepository.AddBusSeat(new BusSeatNew()
+                    {
+                        busId = busAndListBus.bus.Id,
+                        seatNo = 1
+                    }) ;
                     IEnumerable<Bus> buses = _busDBRepository.GetAllBus();
 
                     BusAndListBusViewModel busAndListBusViewModels = new BusAndListBusViewModel

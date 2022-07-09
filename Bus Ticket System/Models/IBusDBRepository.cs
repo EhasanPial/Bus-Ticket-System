@@ -12,6 +12,16 @@ namespace Bus_Ticket_System.Models
         void Delete(int? id);
 
 
+        IEnumerable<BusSeatNew> GetBusSeats(int? id);
+        BusSeatNew UpdateBusSeat(BusSeatNew? busSeat);
+        BusSeatNew AddBusSeat(BusSeatNew? busSeat);
+
+
+        Ticket AddTicket(Ticket ticket);
+        void DeleteTicket(int? id);
+        IEnumerable<Ticket> GetAllTicket();
+        Ticket GetTicket(int? id);
+
 
     }
 }

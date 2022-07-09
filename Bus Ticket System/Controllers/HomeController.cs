@@ -1,6 +1,8 @@
 ﻿using Bus_Ticket_System.Models;
 using Bus_Ticket_System.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,11 +14,18 @@ namespace Bus_Ticket_System.Controllers
 
         private readonly IBusDBRepository _busDBRepository;
         private readonly AppDbContext _context;
+        private readonly Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public HomeController(IBusDBRepository busDBRepository, AppDbContext context)
+
+
+        public HomeController(IBusDBRepository busDBRepository, AppDbContext context, Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager,
+                                    SignInManager<ApplicationUser> signInManager)
         {
             _busDBRepository = busDBRepository;
             _context = context;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
 
         }
 
@@ -88,12 +97,102 @@ namespace Bus_Ticket_System.Controllers
 
         }
 
-        [Route("/SearchBus/{id}")]
-        public IActionResult Purchase(int id, BusBookingViewModel viewModel)
+        [Route("/Purchase/{id}")]
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> PurchaseAsync(int id, BusBookingViewModel viewModel)
         {
-            viewModel.busId = id;
+            var allSeats = from s in _context.BusSeatsNew
+                           select s
+                         ;
+            IEnumerable<BusSeatNew> busSeats = await allSeats.AsNoTracking().ToListAsync(); // getting all bus ;
+            int currentAva = 1;
+            int busseatId = 1;
+            foreach (BusSeatNew busSeat in busSeats)
+            {
+                if (id == busSeat.busId)
+                {
 
-            return View(viewModel);
+                    currentAva = busSeat.seatNo;
+                    busseatId = busSeat.Id;
+                    break;
+                }
+
+            }
+
+            Bus bus = _busDBRepository.GetBusById(id);
+
+            PurchaseViewModel purchaseViewModel = new PurchaseViewModel
+            {
+                busId = id,
+                currentAva = currentAva,
+                name = User.Identity.GetUserName(),
+                bus = bus,
+                busseatid = busseatId,
+                userId = User.Identity.GetUserId()
+
+
+
+
+            };
+
+            return View(purchaseViewModel);
         }
+
+
+        [Route("/Purchase/{id}")]
+        [HttpPost]
+        [Authorize]
+        public IActionResult PurchaseAsync(int id, PurchaseViewModel purchaseViewModel)
+        {
+            Bus bus = _busDBRepository.GetBusById(purchaseViewModel.busId);
+            purchaseViewModel.bus = bus;
+            Ticket ticket = new Ticket
+            {
+                 
+                busId = id,
+                currentAva = purchaseViewModel.currentAva,
+                name = purchaseViewModel.name,
+                From = purchaseViewModel.bus.From,
+                To = purchaseViewModel.bus.To,
+                busTime = purchaseViewModel.bus.Time,
+                cost = purchaseViewModel.bus.Cost,
+                purchaseTime = DateTime.Now,
+                userId = purchaseViewModel.userId
+
+            };
+            _busDBRepository.AddTicket(ticket);
+            BusSeatNew busSeat = new BusSeatNew
+            {
+                Id = purchaseViewModel.busseatid,
+                busId = id,
+                seatNo = purchaseViewModel.currentAva + 1
+            };
+            _busDBRepository.UpdateBusSeat(busSeat);
+
+            return RedirectToAction("purchaseHistory", "home");
+        }
+
+        [Route("purchaseHistory")]
+        [Authorize]
+        public async Task<IActionResult> purchaseHistoryAsync()
+        {
+
+            var allSeats = from s in _context.Tickets
+                           select s
+                       ;
+            IEnumerable<Ticket> tickets = await allSeats.AsNoTracking().ToListAsync(); // getting all bus ; 
+            List<Ticket> userTicket = new List<Ticket>();
+
+            foreach (Ticket t in tickets)
+            {
+                if (t.userId == User.Identity.GetUserId())
+                {
+                    userTicket.Add(t);
+                }
+            }
+            return View(userTicket);
+        }
+
     }
 }
