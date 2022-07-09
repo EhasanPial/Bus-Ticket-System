@@ -39,7 +39,7 @@ namespace Bus_Ticket_System.Controllers
             var allBus = from s in _context.Buses
                          select s;
 
-           // Enum x = Models.Route.Select;
+            // Enum x = Models.Route.Select;
             /*if (!SearchFrom.Equals(x) && !SearchTo.Equals(x))
 
                 allBus = allBus.Where(bus => bus.From.Equals(SearchFrom) && bus.To.Equals(SearchTo)
@@ -99,7 +99,7 @@ namespace Bus_Ticket_System.Controllers
                     {
                         busId = busAndListBus.bus.Id,
                         seatNo = 1
-                    }) ;
+                    });
                     IEnumerable<Bus> buses = _busDBRepository.GetAllBus();
 
                     BusAndListBusViewModel busAndListBusViewModels = new BusAndListBusViewModel
@@ -146,7 +146,7 @@ namespace Bus_Ticket_System.Controllers
         {
 
             Bus bus = _busDBRepository.GetBusById(id);
-            
+
 
             return View(bus);
         }
@@ -160,16 +160,67 @@ namespace Bus_Ticket_System.Controllers
             {
 
                 _busDBRepository.Update(busChangee);
-                
-                
+
+
                 return RedirectToAction("Bus", "AdminPanel");
 
             }
-             
+
 
             return View();
         }
+        [Route("Voucher")]
+        [HttpGet]
+        public async Task<IActionResult> VoucherAsync()
+        {
+            var vouchers = from s in _context.Vouchers
+                         select s;
+            IEnumerable<Voucher> vouchersEnum = await vouchers.AsNoTracking().ToListAsync();
+            VoucherAndBoucherList viewModel = new VoucherAndBoucherList()
+            {
+                vouchers = vouchersEnum
+            };
 
+            return View(viewModel);
+
+
+        }
+
+        [Route("Voucher")]
+        [HttpPost]
+
+        public IActionResult Voucher(VoucherAndBoucherList viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _busDBRepository.AddVoucher(viewModel.voucher);
+                IEnumerable<Voucher> vouchers = _busDBRepository.GetAllVoucher();
+
+                VoucherAndBoucherList voucherAndBoucher = new VoucherAndBoucherList
+                {
+                    vouchers = vouchers,
+                    voucher = new Voucher()
+
+                };
+                ModelState.Clear();
+                return View(voucherAndBoucher);
+                
+
+            }
+            else
+            {
+                return View(viewModel);
+            }
+
+        }
+
+        [Route("Voucher/Delete/{id}")]
+        public IActionResult VoucherDelete(int id)
+        {
+            _busDBRepository.DeleteVoucher(id);
+            return RedirectToAction("voucher", "AdminPanel");
+        }
 
 
 

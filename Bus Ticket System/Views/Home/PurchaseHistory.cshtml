@@ -9,18 +9,98 @@
     @{
         foreach (Ticket userTicket in Model)
         {
-            <div class="outside_rec">
-                <div class="inside_rec">
-                     <p>Ticket Number: @userTicket.id</p>
+            <div class="row_x">
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Ticket Number:</span>
+
+                    <span class="col-sm-3 details_x"> @userTicket.Id</span>
+
                 </div>
+
+
+
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">From:</span>
+
+                    <span class="col-sm-3 details_x"> @userTicket.From</span>
+
+                </div>
+
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">To:</span>
+
+                    <span class="col-sm-3 details_x"> @userTicket.To</span>
+
+                </div>
+
+
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Seat No:</span>
+
+                    <span class="col-sm-3 details_x"> @userTicket.currentAva</span>
+
+                </div>
+
+
+
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Cost:</span>
+
+                    <span class="col-sm-3 details_x"> @userTicket.cost</span>
+
+                </div>
+
+
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Journey Time:</span>
+
+                    <span class="col-sm-3 details_x">@userTicket.journeyTime.ToString("D") @userTicket.busTime.ToString("hh:mm:tt")</span>
+
+                </div>
+
+
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Purchase Time:</span>
+
+                    <span class="col-sm-3 details_x"> @userTicket.purchaseTime</span>
+
+                </div>
+
+                <a asp-action=returnTicket asp-route-ticketId=@userTicket.Id class="btn btn-primary text-white rounded mt-5" style="width:80px ;display:flex; justify-content:right; align-items:flex-end">Return</a>
+
+
             </div>
-            <p>
-                @userTicket.busId @userTicket.userId @userTicket.cost @userTicket.currentAva @userTicket.From @userTicket.To @userTicket.name @userTicket.purchaseTime
-                @userTicket.busTime
-            </p>
+
+
 
         }
     }
 
 
 </div>
+@*<p>
+    @userTicket.busId @userTicket.userId @userTicket.cost @userTicket.currentAva @userTicket.From @userTicket.To @userTicket.name @userTicket.purchaseTime
+    @userTicket.busTime
+    </p>*@
+
+@*<span>Ticket Number:    @userTicket.Id</span>
+    <br>
+    <span>
+    From:   @userTicket.From
+    To:    @userTicket.To
+    </span>
+    <br>
+    <span>Cost: @userTicket.cost</span>
+    <br>
+    <span>Seat No:  @userTicket.currentAva</span>
+    <br>
+    <span>Journey Time: @userTicket.busTime</span>
+    <br>
+    <span>Purchase Time:    @userTicket.purchaseTime</span>
+*@

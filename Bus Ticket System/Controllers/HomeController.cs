@@ -100,7 +100,7 @@ namespace Bus_Ticket_System.Controllers
         [Route("/Purchase/{id}")]
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> PurchaseAsync(int id, BusBookingViewModel viewModel)
+        public async Task<IActionResult> PurchaseAsync(int id, DateTime date, BusBookingViewModel viewModel)
         {
             var allSeats = from s in _context.BusSeatsNew
                            select s
@@ -129,7 +129,8 @@ namespace Bus_Ticket_System.Controllers
                 name = User.Identity.GetUserName(),
                 bus = bus,
                 busseatid = busseatId,
-                userId = User.Identity.GetUserId()
+                userId = User.Identity.GetUserId(),
+                journeyTime = date
 
 
 
@@ -149,8 +150,9 @@ namespace Bus_Ticket_System.Controllers
             purchaseViewModel.bus = bus;
             Ticket ticket = new Ticket
             {
-                 
+
                 busId = id,
+             
                 currentAva = purchaseViewModel.currentAva,
                 name = purchaseViewModel.name,
                 From = purchaseViewModel.bus.From,
@@ -158,7 +160,8 @@ namespace Bus_Ticket_System.Controllers
                 busTime = purchaseViewModel.bus.Time,
                 cost = purchaseViewModel.bus.Cost,
                 purchaseTime = DateTime.Now,
-                userId = purchaseViewModel.userId
+                userId = purchaseViewModel.userId,
+                journeyTime = purchaseViewModel.journeyTime
 
             };
             _busDBRepository.AddTicket(ticket);
@@ -193,6 +196,25 @@ namespace Bus_Ticket_System.Controllers
             }
             return View(userTicket);
         }
+        [Route("returnTicket")]
+        [Authorize]
+        public IActionResult returnTicket(int ticketId)
+        {
+            Ticket ticket = _busDBRepository.GetTicket(ticketId);
+            DateTime now = DateTime.Now;
+            DateTime journeyDate = ticket.journeyTime;
+
+            if (now < journeyDate)
+            {
+                _busDBRepository.DeleteTicket(ticketId);
+               
+
+            }
+
+            return RedirectToAction("purchaseHistory", "Home");
+        }
 
     }
+        
+
 }

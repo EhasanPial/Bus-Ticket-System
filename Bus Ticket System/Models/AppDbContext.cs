@@ -21,6 +21,7 @@ namespace Bus_Ticket_System.Models
        
         public DbSet<BusSeatNew> BusSeatsNew { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
 
         
 

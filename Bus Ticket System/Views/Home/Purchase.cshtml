@@ -11,6 +11,8 @@
 
 </style>
 
+ 
+
 <div class="rec_main container-sm rounded mb-lg-5 ">
     <p class="bd_pori mt-4 mb-4">TICKET</p>
 
@@ -47,7 +49,7 @@
     <div class="row_x row bg-light p-lg-2 mb-2">
         <span class="col-3 font-weight-bolder">Journey Time:</span>
         <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.bus.Time</span>
+        <span class="col-4 details_x">@Model.journeyTime.ToString("D") @Model.bus.Time.ToString("hh:mm tt")</span>
 
     </div>
 
@@ -62,10 +64,11 @@
         <input asp-for=@Model.name type="hidden" value=@Model.name />
         <input asp-for=@Model.userId type="hidden" value=@Model.userId />
         <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
-         
-         
-            <button class="btn rounded bg-primary text-white" style="float:right; margin-right:109px; margin-top:12px" type="submit" value="">Confirm</button>
-        
+        <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
+
+
+        <button class="btn rounded bg-primary text-white" style="float:right; margin-right:109px; margin-top:12px" type="submit" value="">Confirm</button>
+
     </form>
 
 </div>

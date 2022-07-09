@@ -44,9 +44,14 @@ namespace Bus_Ticket_System.Models
             return context.Buses.Find(id);
         }
 
-        public IEnumerable<BusSeatNew> GetBusSeats(int? id)
+        public IEnumerable<BusSeatNew> GetBusSeats()
         {
             return context.BusSeatsNew;
+        }
+
+        public BusSeatNew GetBusSeats(int? id)
+        {
+            return context.BusSeatsNew.Find(id);
         }
 
         public BusSeatNew UpdateBusSeat(BusSeatNew? busSeat)
@@ -104,6 +109,36 @@ namespace Bus_Ticket_System.Models
             return context.Tickets.Find(id);
         }
 
-         
+        public IEnumerable<BusSeatNew> GetAllBusSeats()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Voucher AddVoucher(Voucher voucher)
+        {
+            context.Vouchers.Add(voucher);
+            context.SaveChanges();
+            return voucher;
+        }
+
+        public void DeleteVoucher(int? id)
+        {
+            Voucher voucher = context.Vouchers.Find(id);
+            if (voucher != null)
+            {
+                context.Vouchers.Remove(voucher);
+                context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<Voucher> GetAllVoucher()
+        {
+           return context.Vouchers;
+        }
+
+        public Voucher GetVourcher(int? id)
+        {
+            return context.Vouchers.Find(id);
+        }
     }
 }

@@ -1,0 +1,101 @@
+﻿@using Bus_Ticket_System.ViewModels
+@model VoucherAndBoucherList
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="~/fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="~/css/bootstrap.min.css">
+
+<!-- Style -->
+<link rel="stylesheet" href="~/css/Admin/AdminBus.scss">
+
+
+
+
+
+<div class="container">
+
+    <form method="post">
+
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label class="form-label" asp-for="@Model.voucher.code"></label>
+                <div>
+                    <input asp-for="@Model.voucher.code" class="form-control" style="max-width:90%" />
+                </div>
+
+            </div>
+
+            <div style="margin-top:15px">
+
+                <button type="submit" class="btn btn-success btn-group-sm">Add New Voucher</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<br>
+<br>
+
+
+
+
+<div class="table-responsive">
+
+    <table class="table custom-table">
+        <thead class="bg-dark text-white">
+
+            <tr>
+
+
+                <th scope="col">ID</th>
+                <th scope="col">CODE</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (@Model.vouchers != null)
+                {
+
+                    foreach (Voucher voucher in Model.vouchers)
+                    {
+                        <tr>
+                            <td>
+                                @voucher.Id
+                            </td>
+                            <td>
+                                @voucher.code
+                                <div>
+                                    <a class="col-sm-1" asp-action="Edit" asp-route-id="@voucher.Id"><i class="fa-solid fa-pen text-success"></i></a>
+                                    <a class="col-sm-1" asp-action="VoucherDelete" asp asp-route-id="@voucher.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                    }
+                }
+
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+

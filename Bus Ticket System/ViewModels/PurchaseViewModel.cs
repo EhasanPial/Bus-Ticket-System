@@ -12,6 +12,7 @@ namespace Bus_Ticket_System.ViewModels
         public Bus bus  { get; set; }
 
         public DateTime purchaseTime { get; set; }
+        public DateTime journeyTime { get; set; }
 
         public string userId { get; set; }
 
