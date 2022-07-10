@@ -23,7 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;600&family=Roboto:ital,wght@0,100;0,400;1,100;1,500;1,700;1,900&family=Source+Serif+Pro:wght@300&display=swap" rel="stylesheet">
 
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     @*------------ NAV BAR --------------*@
     @*
@@ -88,23 +88,23 @@
                             @if (User.IsInRole("Admin"))
                             {
 
-                                        <li class="nav-item">
-                                            <a asp-action="Index"
+                                                <li class="nav-item">
+                                                    <a asp-action="Index"
                                asp-controller="AdminPanel" class="nav-link">Admin Panel</a>
-                                        </li>
+                                                </li>
 
                             }
                             else
                             {
-                                        <li class="nav-item">
-                                            <a asp-action="PurchaseHistory"
+                                                <li class="nav-item">
+                                                    <a asp-action="PurchaseHistory"
                                asp-controller="Home" class="nav-link">Purchase History</a>
-                                        </li>
+                                                </li>
                             }
-                                <li class="nav-item">
-                                    <a asp-action="logoutCheck"
+                                    <li class="nav-item">
+                                        <a asp-action="logoutCheck"
                                asp-controller="account" class="nav-link">Logout</a>
-                                </li>
+                                    </li>
                             @* <li class="nav-item">
                                 <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
 
@@ -117,15 +117,15 @@
 
                         else
                         {
-                                <li class="nav-item">
-                                    <a asp-action="login"
+                                    <li class="nav-item">
+                                        <a asp-action="login"
                                asp-controller="Account" class="nav-link">Login</a>
-                                </li>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a asp-action="Register"
+                                    <li class="nav-item">
+                                        <a asp-action="Register"
                                asp-controller="Account" class="nav-link">Register</a>
-                                </li>
+                                    </li>
 
                         }
 

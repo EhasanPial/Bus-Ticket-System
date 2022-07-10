@@ -1,3 +1,334 @@
-﻿@{
-     
+﻿@model Bus_Ticket_System.ViewModels.AdminIndexModelViewModel
+
+@{
+    ViewBag.Title = "Admin Panel";
 }
+
+
+<div class="row">
+    <div class="col-8">
+        <div class="table-responsive-sm styled-table rounded">
+            <h5>Tour Buses</h5>
+            <table class="table custom-table">
+                <thead class="bg-dark text-white">
+
+                    <tr>
+
+
+                        <th scope="col">TYPE</th>
+
+                        <th scope="col">Available Seats</th>
+                        <th scope="col">FROM</th>
+                        <th scope="col">TO</th>
+                        <th scope="col">JOURNEY TIME</th>
+                        <th scope="col">COST</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (@Model.tourBuses != null)
+                        {
+
+                            foreach (Bus bus in Model.tourBuses)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @bus.Type
+                                    </td>
+
+
+
+                                    <td class="text-primary">
+                                        @bus.ava_seat
+                                    </td>
+                                    <td>
+                                        @bus.From
+
+                                    </td>
+                                    <td>@bus.To</td>
+                                    <td>@bus.Time.ToString("hh"):@bus.Time.ToString("mm") @bus.Time.ToString("tt")</td>
+                                    <td>@bus.Cost TK</td>
+                                    <td>
+                                        <div>
+                                            <a class="col-sm-1 m-3" asp-action="Edit" asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
+                                            <a class="col-sm-1 m-3" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                            <a class="col-sm-1 ml-1" asp-action="ResetSeat" asp asp-route-id="@bus.busSeatId"
+                                   asp-route-busId=@bus.Id><i class="fa-solid fa-retweet text-primary"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="col-4">
+        <div class="table-responsive-sm table-hover styled-table rounded">
+            <h5>Vouchers</h5>
+            <table class="table custom-table">
+                <thead class="bg-dark text-white">
+
+                    <tr>
+
+
+                        <th scope="col">ID</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Code</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (@Model.vouchers != null)
+                        {
+
+                            foreach (Voucher voucher in Model.vouchers)
+                            {
+                                <tr>
+                                    <td>
+                                        @voucher.Id
+                                    </td>
+                                    <td class="text-success font-weight-bold">
+                                        @(voucher.discount_percent)%
+                                    </td>
+                                    <td class="text-primary font-weight-bold">
+                                        @voucher.code
+
+                                    </td>
+
+                                </tr>
+
+                            }
+                        }
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        <div class="table-responsive-sm styled-table rounded">
+            <h5>Normal Buses</h5>
+            <table class="table custom-table">
+                <thead class="bg-dark text-white">
+
+                    <tr>
+
+
+                        <th scope="col">TYPE</th>
+
+                        <th scope="col">Available Seats</th>
+                        <th scope="col">FROM</th>
+                        <th scope="col">TO</th>
+                        <th scope="col">JOURNEY TIME</th>
+                        <th scope="col"><a class="text-white" asp-action="Bus" asp-route-sortOrder="@ViewData["CostSortParam"]"><u>COST</u></a></th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (@Model.normalBuses != null)
+                        {
+
+                            foreach (Bus bus in Model.tourBuses)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @bus.Type
+                                    </td>
+
+
+
+                                    <td class="text-primary">
+                                        @bus.ava_seat
+                                    </td>
+                                    <td>
+                                        @bus.From
+
+                                    </td>
+                                    <td>@bus.To</td>
+                                    <td>@bus.Time.ToString("hh"):@bus.Time.ToString("mm") @bus.Time.ToString("tt")</td>
+                                    <td>@bus.Cost TK</td>
+                                    <td>
+                                        <div>
+                                            <a class="col-sm-1 m-3" asp-action="Edit" asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
+                                            <a class="col-sm-1 m-3" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                            <a class="col-sm-1 ml-1" asp-action="ResetSeat" asp asp-route-id="@bus.busSeatId"
+                                   asp-route-busId=@bus.Id><i class="fa-solid fa-retweet text-primary"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <div class="col-4">
+        <div class="row">
+            <div class="table-responsive-sm styled-table rounded">
+
+                <table class="table custom-table">
+                    <thead class="bg-dark text-white">
+
+                        <tr>
+                            <th class="text-center" scope="col">Total Sell</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="text-center text-success">@Model.total_sell TK</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="table-responsive-sm styled-table rounded">
+
+            <table class="table custom-table">
+                <thead class="bg-dark text-white">
+
+                    <tr>
+                        <th class="text-center" scope="col">Total Ticket Sell</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-center text-success">@Model.total_tickets</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+        </div>
+
+    </div>
+
+</div>
+<div class="row">
+    <div class="col">
+        <div class="table-responsive-sm styled-table rounded">
+            <h5>Tickets</h5>
+            <table class="table custom-table">
+                <thead class="bg-dark text-white">
+
+                    <tr>
+
+
+                        <th scope="col">ID</th>
+                        <th scope="col">Bus ID</th>
+                        <th scope="col">Seat No</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Cost</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Purchase Time</th>
+                        <th scope="col">Journey Time</th>
+                        <th scope="col">Food</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+
+
+                        foreach (Ticket ticket in @Model.tickets)
+                        {
+
+                            <tr>
+                                <td>
+                                    @ticket.Id
+                                </td>
+                                <td>
+                                    @ticket.busId
+                                </td>
+                                <td>
+                                    @ticket.currentAva
+
+                                </td>
+                                <td>
+                                    @ticket.name
+
+                                </td>
+                                <td>
+                                    @(ticket.cost) TK
+
+                                </td>
+                                <td>
+                                    @ticket.From
+
+                                </td>
+                                <td>
+                                    @ticket.To
+
+                                </td>
+                                <td> @ticket.purchaseTime.ToString("D") @ticket.purchaseTime.ToString("hh:mm tt")</td>
+
+                                <td> @ticket.journeyTime.ToString("D") @ticket.journeyTime.ToString("hh:mm tt")</td>
+
+
+
+                                @if (@ticket.checkFood == true)
+                                {
+                                    <td>YES</td>
+                                }
+                                else
+                                {
+                                    <td>NO</td>
+                                }
+
+
+                                @*  <td>
+                                    <div>
+
+                                    <a class="col-sm-1 m-1" asp-action="ticketDelete" asp asp-route-id="@voucher.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                    </div>
+                                    </td>
+                                *@
+                            </tr>
+                        }
+
+
+
+
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

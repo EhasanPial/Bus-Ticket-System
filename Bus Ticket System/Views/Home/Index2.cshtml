@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
-   
+
 
 </head>
 
@@ -69,7 +69,7 @@
                     <div class="box">
                         <label><span>Choose Class:</span></label>
                         <br>
-                        <select   name="SeachBusType" class="form-select" required
+                        <select name="SeachBusType" class="form-select" required
                                 asp-items="Html.GetEnumSelectList<BusType>()">
                             <option selected value="">Please Select</option>
                         </select>
@@ -118,9 +118,9 @@
                     </p>
                     <p>Do you want to checkout our available buses?</p>
                     <button class="flex2">
-                        <a asp-action="SearchBus" asp-route-SearchFrom="" 
-                        asp-route-SearchTo="" asp-route-SeachBusType="" asp-route-datePassing=@DateTime.Now.Date 
-                        class="text-white">Check All Bus</a>
+                        <a asp-action="SearchBus" asp-route-SearchFrom=""
+                           asp-route-SearchTo="" asp-route-SeachBusType="" asp-route-datePassing=@DateTime.Now.Date
+                           class="text-white">Check All Bus</a>
                         <i class="fas fa-arrow-circle-right"></i>
                     </button>
                 </div>
@@ -233,17 +233,17 @@
     <section class="offer mtop" id="services">
         <div class="container">
             <div class="heading">
-                <h5>EXCLUSIVE OFFERS </h5>
-                <h3>You can get an exclusive offer </h3>
+                <h5>Real Advanture </h5>
+                <h3>Enjoy our tour bus service </h3>
             </div>
 
             <div class="content grid2 mtop">
                 <div class="box flex">
                     <div class="left">
-                        <img src="image/o1.jpg" alt="">
+                        <img src="~/image/cox.jpg" alt="">
                     </div>
                     <div class="right">
-                        <h4>Deluxe Room</h4>
+                        <h4>Dhaka To Cox's Bazar </h4>
                         <div class="rate flex">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -251,20 +251,82 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <h5>From $50.6/night</h5>
-                        <button class="flex1">
-                            <span>Check Availability</span>
-                            <i class="fas fa-arrow-circle-right"></i>
-                        </button>
+                        <p> With our low cost exclusive bus service enjoy your vacation</p>
+                        <h5>Price: 30K TK</h5>
+                        <div class="flex1">
+                            <a asp-action="searchBus" asp-route-SearchFrom=Dhaka asp-route-SearchTo=Coxs_bazar asp-route-SeachBusType=Non_AC asp-route-datePassing=@DateTime.Now.Date.AddDays(7)
+                               class="text-white rounded-pill bg-primary p-3 w-75">
+                                <span>
+                                    Check Availability
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="box flex">
+                    <div class="left">
+                        <img src="~/image/bandanbar.jpg" alt="">
+                    </div>
+                    <div class="right">
+                        <h4>Dhaka To Bandarban </h4>
+                        <div class="rate flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>Bandarban, a place of natural beauty. Enjoy our services to find real advanture.</p>
+                        <h5>Price: 20K TK</h5>
+                        <div class="flex1">
+                            <a asp-action="searchBus" asp-route-SearchFrom=Dhaka asp-route-SearchTo=Bandarban asp-route-SeachBusType=Non_AC asp-route-datePassing=@DateTime.Now.Date.AddDays(7)
+                               class="text-white rounded-pill bg-primary p-3 w-75">
+                                <span>
+                                    Check Availability
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="box flex">
+                    <div class="left">
+                        <img src="~/image/shylet.jpg" alt="">
+                    </div>
+                   <div class="right">
+                        <h4>Dhaka To Shylet </h4>
+                        <div class="rate flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>What are you waiting for! Grab your first booking ticket.</p>
+                        <h5>Price: 25K TK</h5>
+                        <div class="flex1">
+                            <a asp-action="searchBus" asp-route-SearchFrom=Dhaka asp-route-SearchTo=Shylet asp-route-SeachBusType=Non_AC asp-route-datePassing=@DateTime.Now.Date.AddDays(7)
+                               class="text-white rounded-pill bg-primary p-3 w-75">
+                                <span>
+                                    Check Availability
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </span>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
                 <div class="box flex">
                     <div class="left">
-                        <img src="image/o2.jpg" alt="">
+                        <img src="~/image/kuakata.jpg" alt="">
                     </div>
-                    <div class="right">
-                        <h4>Deluxe Room</h4>
+                     <div class="right">
+                        <h4>Dhaka To Kuakata </h4>
                         <div class="rate flex">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -272,56 +334,19 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <h5>From $50.6/night</h5>
-                        <button class="flex1">
-                            <span>Check Availability</span>
-                            <i class="fas fa-arrow-circle-right"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box flex">
-                    <div class="left">
-                        <img src="image/o3.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>Deluxe Room</h4>
-                        <div class="rate flex">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <p>Kuakata, Daughter of sea.</p>
+                        <h5>Price: 25K TK</h5>
+                        <div class="flex1">
+                            <a asp-action="searchBus" asp-route-SearchFrom=Dhaka asp-route-SearchTo=Kuakata asp-route-SeachBusType=Non_AC asp-route-datePassing=@DateTime.Now.Date.AddDays(7)
+                               class="text-white rounded-pill bg-primary p-3 w-75">
+                                <span>
+                                    Check Availability
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </span>
+                            </a>
+
                         </div>
-                        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <h5>From $50.6/night</h5>
-                        <button class="flex1">
-                            <span>Check Availability</span>
-                            <i class="fas fa-arrow-circle-right"></i>
-                        </button>
                     </div>
-                </div>
-                <div class="box flex">
-                    <div class="left">
-                        <img src="image/o4.jpg" alt="">
-                    </div>
-                    <div class="right">
-                        <h4>Deluxe Room</h4>
-                        <div class="rate flex">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p> Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        <h5>From $50.6/night</h5>
-                        <button class="flex1">
-                            <span>Check Availability</span>
-                            <i class="fas fa-arrow-circle-right"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

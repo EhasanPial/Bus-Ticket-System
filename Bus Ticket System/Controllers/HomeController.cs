@@ -46,20 +46,18 @@ namespace Bus_Ticket_System.Controllers
         public IActionResult Index2()
         {
             IEnumerable<Bus> allBus = _busDBRepository.GetAllBus();
+            List<Bus> busesList = new List<Bus>();
 
+            Enum dhaka = Models.Route.Dhaka;
+            for (int i = 0; i < 4; i++)
+            {
+                 
+                    busesList.Add(allBus.ElementAt(i)); 
+                
+            }
+ 
 
-            /* Enum dhaka = Models.Route.Dhaka;
-             for (int i = 0; i < allBus.Count(); i++)
-             {
-                 if(!allBus.ElementAt(i).From.Equals(dhaka))
-                 {
-                     allBus.ToList().RemoveAt(i);
-                 }
-             }
-
-             Console.WriteLine(allBus.Count());*/
-
-            return View(allBus);
+            return View(busesList);
         }
 
 

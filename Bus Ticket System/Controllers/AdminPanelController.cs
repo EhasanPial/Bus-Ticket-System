@@ -23,7 +23,46 @@ namespace Bus_Ticket_System.Controllers
         [Route("Index")]
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Bus> buses = _busDBRepository.GetAllBus();
+            List<Bus> tourbus = new List<Bus>();
+            List<Bus> normalbus = new List<Bus>();
+            int x = 0;
+            foreach (Bus bu in buses)
+            {
+                if (bu.TourBus == true) tourbus.Add(bu);
+                else if (x <= 10)
+                {
+                    normalbus.Add(bu);
+                    x++;
+                }
+            }
+
+            IEnumerable<Ticket> ticket = _busDBRepository.GetAllTicket();
+            List<Ticket> ticketList = new List<Ticket>();
+
+            int total_sell = 0;
+            for (int i = ticket.Count()-1; i >=0; i--)
+            {
+                if (i >= ticket.Count()-6)
+                    ticketList.Add(ticket.ElementAt(i));
+                total_sell += ticket.ElementAt(i).cost;
+            }
+
+            IEnumerable<Voucher> voucher = _busDBRepository.GetAllVoucher();
+
+            AdminIndexModelViewModel viewModel = new AdminIndexModelViewModel
+            {
+                tourBuses = tourbus,
+                normalBuses = normalbus,
+                tickets = ticketList,
+                total_sell = total_sell,
+                vouchers = voucher,
+                total_tickets = ticket.Count()
+
+            };
+
+
+            return View(viewModel);
         }
 
         [Route("Bus")]
@@ -154,7 +193,9 @@ namespace Bus_Ticket_System.Controllers
         [Route("Tickets")]
         public IActionResult Tickets()
         {
-            return View();
+            IEnumerable<Ticket> allTickets = _busDBRepository.GetAllTicket();
+
+            return View(allTickets);
         }
 
         [Route("/Delete/{id}")]

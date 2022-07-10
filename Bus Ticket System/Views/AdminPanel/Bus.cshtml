@@ -3,18 +3,24 @@
 @{
     ViewBag.Title = "All Buses";
 }
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="~/css/Home/index2.css">
+    <link rel="stylesheet" href="~/css/Home/index2.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
 <script>
     $('#timepicker').timepicker({
         uiLibrary: 'bootstrap4'
@@ -26,7 +32,7 @@
 
 
 
-<form method="post" class="card p-2 ">
+<form method="post" class="card p-4">
 
 
     <div class="row mt-2">
@@ -86,7 +92,7 @@
 
         <div class="mt-2">
 
-            <button type="submit" class="btn bg-black rounded-0 text-white">
+            <button type="submit" class="btn bg-primary text-white">
                 Add Bus
             </button>
         </div>
@@ -143,7 +149,7 @@
 
 
 
-    <div class="table-responsive">
+    <div class="table-responsive styled-table">
 
         <table class="table custom-table">
             <thead class="bg-dark text-white">
@@ -185,7 +191,7 @@
                                 {
                                     <td> Normal Bus</td>
                                 }
-                    
+
                                 <td>
                                     @bus.ava_seat
                                 </td>
