@@ -1,8 +1,21 @@
-﻿.row_x {
-    width: 777px;
+﻿ 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.row_x {
+    width: 700px;
     height: fit-content;
     border: 2px dashed #808080;
-    padding: 15px;
-    margin: 12px;
+    padding: 8px;
+    margin: 8px;
     color: #808080;
 }
+
+.row {
+    font-size: 14px;
+}
+
+ 

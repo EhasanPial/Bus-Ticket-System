@@ -4,11 +4,14 @@
     <meta name="viewport" content="width=device-width" />
 
     <link rel="stylesheet"
-          href="~/css/Admin/adminHome.css" />
-    <script src="~/css/Admin/admin.js"></script>
-    <link rel="stylesheet"
           href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/Home/index2.css">
 
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
@@ -42,9 +45,9 @@
 <body>
     <div class="container-lg">
 
-        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-            <div class="container">
-                <a class="navbar-brand" asp-action="Index"
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="ftco-navbar">
+            <div class="container bg-primary">
+                <a class="navbar-brand text-white" asp-action="Index"
                    asp-controller="Home">Bangladesh <span>Poribohon</span></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,19 +57,19 @@
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
                             <a asp-action="Index"
-                               asp-controller="Home" class="nav-link">Home</a>
+                               asp-controller="Home" class="nav-link text-white">Home</a>
                         </li>
 
 
                         <li class="nav-item">
                             <a asp-action="Bus"
-                               asp-controller="AdminPanel" class="nav-link">Bus</a>
+                               asp-controller="AdminPanel" class="nav-link text-white">Bus</a>
                         </li>
 
 
                         <li class="nav-item">
                             <a asp-action="Users"
-                               asp-controller="AdminPanel" class="nav-link">Users</a>
+                               asp-controller="AdminPanel" class="nav-link text-white">Users</a>
                         </li>
 
 
@@ -74,12 +77,12 @@
 
                         <li class="nav-item">
                             <a asp-action="Tickets"
-                               asp-controller="AdminPanel" class="nav-link">Tickets</a>
+                               asp-controller="AdminPanel" class="nav-link text-white">Tickets</a>
                         </li>
 
                         <li class="nav-item">
                             <a asp-action="logoutCheck"
-                               asp-controller="account" class="nav-link">Logout</a>
+                               asp-controller="account" class="nav-link text-white">Logout</a>
                         </li>
 
 
@@ -100,11 +103,11 @@
 
 
         @if (IsSectionDefined("Scripts"))
-        {   
+        {
             @RenderSection("Scripts", required:true)
 
         }
- 
+
 
     </div>
 

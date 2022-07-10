@@ -5,20 +5,14 @@
 }
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="~/fonts/icomoon/style.css">
+<link rel="stylesheet" href="~/css/Home/index2.css">
 
-<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="~/css/bootstrap.min.css">
 
-<!-- Style -->
-<link rel="stylesheet" href="~/css/Admin/AdminBus.scss">
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 <script>
@@ -30,121 +24,123 @@
 
 
 
-<div class="container">
-
-    <form method="post">
 
 
-        <div class="row">
-            <div class="col-sm-2">
-                <label class="form-label" asp-for="@Model.bus.Type"></label>
-                <div>
-                    <select asp-for="@Model.bus.Type" class="custom-select" style="max-width:90%"
-                            asp-items="Html.GetEnumSelectList<BusType>()"></select>
-                </div>
+<form method="post" class="card p-2 ">
 
+
+    <div class="row mt-2">
+        <div class="col-sm-2">
+            <label class="form-label" asp-for="@Model.bus.Type"></label>
+            <div>
+                <select asp-for="@Model.bus.Type" class="custom-select" style="max-width:90%"
+                        asp-items="Html.GetEnumSelectList<BusType>()"></select>
+            </div>
+
+        </div>
+
+
+        <div class="col-sm-2">
+            <label class="form-label" asp-for="@Model.bus.Cost"></label>
+            <input class="form-control form-control-sm" asp-for="@Model.bus.Cost" class="form-control" />
+            <span asp-validation-for="@Model.bus.Cost" class="text-danger"></span>
+        </div>
+
+        <div class="col-2">
+
+            <label class="form-label" asp-for="@Model.bus.From"></label>
+            <div>
+                <select asp-for="@Model.bus.From" class="custom-select" style="max-width:90%"
+                        asp-items="Html.GetEnumSelectList<Route>()"></select>
             </div>
 
 
-            <div class="col-sm-3">
-                <label class="form-label" asp-for="@Model.bus.Cost"></label>
-                <input class="form-control form-control-sm" asp-for="@Model.bus.Cost" class="form-control" />
-                <span asp-validation-for="@Model.bus.Cost" class="text-danger"></span>
-            </div>
-
-            <div class="col-2">
-
-                <label class="form-label" asp-for="@Model.bus.From"></label>
-                <div>
-                    <select asp-for="@Model.bus.From" class="custom-select" style="max-width:90%"
-                            asp-items="Html.GetEnumSelectList<Route>()"></select>
-                </div>
-
-
-            </div>
-            <div class="col-2">
-                <label class="form-label" asp-for="@Model.bus.To"></label>
-                <div>
-                    <select asp-for="@Model.bus.To" class="custom-select" style="max-width:90%"
-                            asp-items="Html.GetEnumSelectList<Route>()"></select>
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <label class="form-label" asp-for="@Model.bus.Time"></label>
-                <input asp-for="@Model.bus.Time" style="width:70%" id="timepicker" width="276" class="form-control form-control-sm" />
-
-                <span asp-validation-for="@Model.bus.Time" class="text-danger"></span>
-
-            </div>
-            <div class="col-sm-3">
-                <div class="form-check col-4">
-                    <input asp-for="@Model.bus.TourBus" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                    <label asp-for="@Model.bus.TourBus" class="form-check-label">
-                        Tour Bus
-                    </label>
-                </div>
-
-
-            </div>
-
-
-            <div style="margin-top:15px">
-
-                <button type="submit" class="btn btn-success btn-group-sm">Add New Bus</button>
+        </div>
+        <div class="col-2">
+            <label class="form-label" asp-for="@Model.bus.To"></label>
+            <div>
+                <select asp-for="@Model.bus.To" class="custom-select" style="max-width:90%"
+                        asp-items="Html.GetEnumSelectList<Route>()"></select>
             </div>
         </div>
-    </form>
-</div>
+
+        <div class="col-sm-3">
+            <label class="form-label" asp-for="@Model.bus.Time"></label>
+            <input asp-for="@Model.bus.Time" style="width:70%" id="timepicker" width="276" class="form-control form-control-sm" />
+
+            <span asp-validation-for="@Model.bus.Time" class="text-danger"></span>
+
+        </div>
+
+        <div class="row">
+            <div class="form-check col-3 m-2">
+                <input asp-for="@Model.bus.TourBus" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label asp-for="@Model.bus.TourBus" class="form-check-label">
+                    Tour Bus
+                </label>
+            </div>
+
+
+        </div>
+
+
+        <div class="mt-2">
+
+            <button type="submit" class="btn bg-black rounded-0 text-white">
+                Add Bus
+            </button>
+        </div>
+    </div>
+</form>
+
 
 
 <br>
 <br>
 
 
-
-<div class="container">
-
-    <form asp-action="Bus" method="get">
+<section>
+    @*
+        <form asp-action="Bus" method="get" class="card p-2">
         <div class="row form-actions no-color col-lg-12">
 
-            <div class="col-3">
-                <label class="form-label">From</label>
+        <div class="col-3">
+        <label class="form-label">From</label>
 
-                <select name="SearchFrom" class="custom-select"
-                        asp-items="Html.GetEnumSelectList<Route>()"></select>
-
-
-            </div>
-
-            <div class="col-3">
-                <label class="form-label">Destiantion</label>
-                <select name="SearchTo" class="custom-select"
-                        asp-items="Html.GetEnumSelectList<Route>()"></select>
-            </div>
-
-
-            @* <div class="col-sm-3">
-                Start: <select name="SearchFrom" class="custom-select" style="max-width:50%"
-                asp-items="Html.GetEnumSelectList<Route>()"></select>
-                </div>
-                <div class="col-sm-3">
-                Destination: <select name="SearchTo" class="custom-select" style="max-width:50%"
-                asp-items="Html.GetEnumSelectList<Route>()"></select>
-                </div>*@
-
+        <select name="SearchFrom" class="custom-select"
+        asp-items="Html.GetEnumSelectList<Route>()"></select>
 
 
         </div>
+
+        <div class="col-3">
+        <label class="form-label">Destiantion</label>
+        <select name="SearchTo" class="custom-select"
+        asp-items="Html.GetEnumSelectList<Route>()"></select>
+        </div>
+
+
+        @* <div class="col-sm-3">
+        Start: <select name="SearchFrom" class="custom-select" style="max-width:50%"
+        asp-items="Html.GetEnumSelectList<Route>()"></select>
+        </div>
+        <div class="col-sm-3">
+        Destination: <select name="SearchTo" class="custom-select" style="max-width:50%"
+        asp-items="Html.GetEnumSelectList<Route>()"></select>
+        </div>*@
+
+
+
+    @* </div>
         <br />
         <div class="row">
-            <div class="col-sm-1"><input type="submit" value="Search" class="btn btn-dark" /> </div>
+        <div class="col-sm-1"><input type="submit" value="Search" class="btn btn-dark" /> </div>
 
-            <div class="col-sm-1"><a class="btn btn-outline-dark" asp-action="Bus">Clear</a></div>
+        <div class="col-sm-1"><a class="btn btn-outline-dark" asp-action="Bus">Clear</a></div>
         </div>
-    </form>
-    <br>
-    <br>
+        </form>
+        <br>*@
+
 
 
     <div class="table-responsive">
@@ -154,13 +150,14 @@
 
                 <tr>
 
-                    <th scope="col"> <a asp-action="Bus" asp-route-sortOrder="@ViewData["IdSortParam"]">ID</a></th>
+                    <th scope="col"> <a class="text-white" asp-action="Bus" asp-route-sortOrder="@ViewData["IdSortParam"]"><u>ID</u></a></th>
                     <th scope="col">TYPE</th>
                     <th scope="col">Tour Bus</th>
+                    <th scope="col">Available Seats</th>
                     <th scope="col">FROM</th>
                     <th scope="col">TO</th>
                     <th scope="col">JOURNEY TIME</th>
-                    <th scope="col"><a asp-action="Bus" asp-route-sortOrder="@ViewData["CostSortParam"]">COST</a></th>
+                    <th scope="col"><a class="text-white" asp-action="Bus" asp-route-sortOrder="@ViewData["CostSortParam"]"><u>COST</u></a></th>
                     <th scope="col">Action</th>
 
                 </tr>
@@ -183,16 +180,21 @@
                                     @bus.TourBus
                                 </td>
                                 <td>
+                                    @bus.ava_seat
+                                </td>
+                                <td>
                                     @bus.From
 
                                 </td>
                                 <td>@bus.To</td>
-                                <td>@bus.Time.Hour:@bus.Time.Minute</td>
+                                <td>@bus.Time.ToString("hh"):@bus.Time.ToString("mm") @bus.Time.ToString("tt")</td>
                                 <td>@bus.Cost</td>
                                 <td>
                                     <div>
-                                        <a class="col-sm-1" asp-action="Edit" asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
-                                        <a class="col-sm-1" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                        <a class="col-sm-1 m-3" asp-action="Edit" asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
+                                        <a class="col-sm-1 m-3" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                        <a class="col-sm-1 ml-1" asp-action="ResetSeat" asp asp-route-id="@bus.busSeatId"
+                               asp-route-busId=@bus.Id><i class="fa-solid fa-retweet text-primary"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -208,7 +210,8 @@
     </div>
 
 
-</div>
 
+
+</section>
 
 

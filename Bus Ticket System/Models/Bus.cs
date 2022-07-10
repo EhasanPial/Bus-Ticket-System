@@ -19,5 +19,7 @@ namespace Bus_Ticket_System.Models
         public DateTime Time { get; set; }
 
         public bool TourBus { get; set; }
+        public int busSeatId { get; set; }
+        public int? ava_seat { get; set; }
     }
 }

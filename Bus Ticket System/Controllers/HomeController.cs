@@ -157,6 +157,7 @@ namespace Bus_Ticket_System.Controllers
         {
             Bus bus = _busDBRepository.GetBusById(purchaseViewModel.busId);
             purchaseViewModel.bus = bus;
+            // -------- TICKET SETTING ------------- //
             Ticket ticket = new Ticket
             {
 
@@ -176,6 +177,8 @@ namespace Bus_Ticket_System.Controllers
 
             };
 
+            
+
             if (purchaseViewModel.checkVoucher == true)
             {
                 ticket.cost = ticket.cost - (int)(ticket.cost * (purchaseViewModel.discount / 100.00));
@@ -185,6 +188,7 @@ namespace Bus_Ticket_System.Controllers
                 if (purchaseViewModel.bus.TourBus == true)
                 {
                     ticket.cost += (100 * 40);
+                    ticket.currentAva = 40;
                 }
                 else
                 {

@@ -109,24 +109,23 @@
                             </section>
                             <section class="card-cont">
 
-                                <h3 style="color:#593196">Bangladesh Poribohon</h3>
+                                <h3 style="color:#593196 ; font-family:'Poppins'">
+                                    Bangladesh Poribohon
+                                    @{
+                                        if (@bus.TourBus == true)
+                                        {
+                                            <span><b> (Tour Bus)</b></span>
+
+                                        }
+                                    }
+                                </h3>
+
+
                                 <div class="even-date">
                                     <i class="fa-solid fa-location-dot p-1 "></i>
                                     <time>
-                                        <span>From: <b style="color:green"> @bus.From</b></span>
-                                        <span>To: <b style="color:green"> @bus.To</b></span>
-                                        <span>
-                                            <b style="color:green">
-                                                @{
-                                                    if (@bus.TourBus == true)
-                                                    {
-                                                        <span>Tour Bus</span>
-
-                                                    }
-                                                }
-                                            </b>
-                                        </span>
-
+                                        <span><b style="color:green"> @bus.From</b>  <i class="fa-solid fa-van-shuttle"></i>
+                                         <b style="color:green">    @bus.To</b></span>
                                     </time>
 
                                 </div>
@@ -135,7 +134,7 @@
                                     <p>
                                         Cost: <span style="color:green; font-weight:600">
 
-                                            <span>@bus.Cost</span>
+                                            <span>@bus.Cost TK</span>
 
                                         </span>
                                     </p>

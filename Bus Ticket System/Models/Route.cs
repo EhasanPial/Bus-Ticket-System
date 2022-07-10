@@ -10,7 +10,10 @@
         Chittagong,
         Barishal,
         Rajshahi,
-        Rangpur
+        Rangpur,
+        Coxs_Bazar,
+        Bandarban,
+
 
 
     }

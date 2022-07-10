@@ -40,7 +40,17 @@
                 <div class="row">
                     <span class="col-sm-3 font-weight-bolder">Seat No:</span>
 
-                    <span class="col-sm-3 details_x"> @userTicket.currentAva</span>
+                    <span class="col-sm-3 details_x">
+                        @if (@userTicket.cost >= 4000)
+                        {
+
+                            <span>All Seats</span>
+                        }
+                        else
+                        {
+                            <span>@userTicket.currentAva</span>
+                        }
+                    </span>
 
                 </div>
 
@@ -90,7 +100,14 @@
 
                 </div>
 
-                <a asp-action=returnTicket asp-route-ticketId=@userTicket.Id class="btn btn-primary text-white rounded mt-1" style="width:80px ;display:flex; justify-content:right; align-items:flex-end">Return</a>
+                @if (@userTicket.cost < 4000)
+                {
+                    <div style="margin-top:5px; display:flex; align-items:end ; justify-content:right">
+                        <a asp-action=returnTicket asp-route-ticketId=@userTicket.Id
+               class="btn-sm btn-primary text-white rounded">Return</a>
+
+                    </div>
+                }
 
 
             </div>

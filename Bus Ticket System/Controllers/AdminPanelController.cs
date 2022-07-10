@@ -69,11 +69,21 @@ namespace Bus_Ticket_System.Controllers
             }
 
             IEnumerable<Bus> buses = await allBus.AsNoTracking().ToListAsync();
+            List<Bus>? busesModified = new List<Bus>();
+            foreach (Bus bu in buses)
+            {
+                bu.ava_seat = 41 - _busDBRepository.GetBusSeats(bu.busSeatId).seatNo;
+                if (bu != null)
+                    busesModified.Add(bu);
+
+            }
 
             BusAndListBusViewModel busAndListBusViewModels = new BusAndListBusViewModel
             {
-                Buses = buses
+                Buses = busesModified
             };
+
+
             ModelState.Remove("SearchFrom");
             ModelState.Remove("SearchTo");
 
@@ -94,12 +104,24 @@ namespace Bus_Ticket_System.Controllers
             {
                 if ((busAndListBus.bus.From != busAndListBus.bus.To))
                 {
-                    _busDBRepository.Add(busAndListBus.bus);
-                    _busDBRepository.AddBusSeat(new BusSeatNew()
-                    {
-                        busId = busAndListBus.bus.Id,
-                        seatNo = 1
-                    });
+                    Console.WriteLine(busAndListBus.bus.Id);
+
+
+                    busAndListBus.bus.ava_seat = 40;
+                    _busDBRepository.Add(busAndListBus.bus); /// _-------- BUS ADD TO DATABASE ----------- ///
+
+
+                    BusSeatNew busSeatNew = new BusSeatNew();
+                    busSeatNew.busId = _busDBRepository.GetBusById(busAndListBus.bus.Id).Id;
+                    busSeatNew.seatNo = 1;
+                    _busDBRepository.AddBusSeat(busSeatNew);
+
+                    Bus newBus = _busDBRepository.GetBusById(busAndListBus.bus.Id);
+                    newBus.busSeatId = busSeatNew.Id;
+                    _busDBRepository.Update(newBus);
+
+
+
                     IEnumerable<Bus> buses = _busDBRepository.GetAllBus();
 
                     BusAndListBusViewModel busAndListBusViewModels = new BusAndListBusViewModel
@@ -174,7 +196,7 @@ namespace Bus_Ticket_System.Controllers
         public async Task<IActionResult> VoucherAsync()
         {
             var vouchers = from s in _context.Vouchers
-                         select s;
+                           select s;
             IEnumerable<Voucher> vouchersEnum = await vouchers.AsNoTracking().ToListAsync();
             VoucherAndBoucherList viewModel = new VoucherAndBoucherList()
             {
@@ -206,7 +228,7 @@ namespace Bus_Ticket_System.Controllers
                 };
                 ModelState.Clear();
                 return View(voucherAndBoucher);
-                
+
 
             }
             else
@@ -221,6 +243,19 @@ namespace Bus_Ticket_System.Controllers
         {
             _busDBRepository.DeleteVoucher(id);
             return RedirectToAction("voucher", "AdminPanel");
+        }
+
+        [Route("ResetSeat")]
+        public IActionResult ResetSeat(int id, int busId)
+        {
+            BusSeatNew busSeatNew = new BusSeatNew
+            {
+                Id = id,
+                busId = busId,
+                seatNo = 1
+            };
+            _busDBRepository.UpdateBusSeat(busSeatNew);
+            return RedirectToAction("Bus", "AdminPanel");
         }
 
 

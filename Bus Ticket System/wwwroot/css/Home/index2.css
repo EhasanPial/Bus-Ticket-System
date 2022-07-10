@@ -91,6 +91,12 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+nav-link {
+    transition: font-size 1s;
+}
+.nav-link:hover {
+    font-size: 18px;
+}
 
 header ul {
     padding: 0 20px 0 0;
@@ -455,7 +461,6 @@ p {
 /*------------wrapper2------------*/
 .wrapper2 {
     position: relative;
-
 }
 
     .wrapper2 .grid {
@@ -466,15 +471,15 @@ p {
         box-shadow: 0 0 20px 3px rgb(0 0 0 / 5%);
         padding: 20px;
         transition: 0.5s;
-        padding:0px;
-        margin:10px;
+        padding: 0px;
+        margin: 10px;
     }
 
     .wrapper2 i {
         margin: 10px 0 15px 0;
         color: #593196;
         font-size: 30px;
-        padding:10px;
+        padding: 10px;
     }
 
     .wrapper2 h3 {
@@ -488,14 +493,13 @@ p {
         border-radius: 50%;
         float: right;
         clear: both;
-        margin: 0 10px 10px 0; 
+        margin: 0 10px 10px 0;
     }
 
     .wrapper2 .card-header {
         background: #593196;
         color: white;
         text-align: center;
-       
     }
 
     .wrapper2 .card-body {
@@ -563,18 +567,19 @@ p {
         margin: 10px;
     }
 
-.wrapper3::after {
-    content: '';
-    position: absolute;
-    top: -22%;
-    left: 0;
-    background-image: url("../image/line1.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 75px;
-    width: 100%;
-    z-index: 2;
-}
+    .wrapper3::after {
+        content: '';
+        position: absolute;
+        top: -22%;
+        left: 0;
+        background-image: url("../image/line1.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 75px;
+        width: 100%;
+        z-index: 2;
+    }
+
     .wrapper3 i {
         margin: 10px 0 15px 0;
         color: #593196;
@@ -610,7 +615,7 @@ p {
 .room {
     margin-bottom: 50px;
     position: relative;
-    text-align:center;
+    text-align: center;
 }
 
     .room.wrapper3::after {
@@ -639,11 +644,11 @@ p {
     padding: 10px;
 }
 
-.room box{
-    padding:10px;
-    margin:10px; 
+.room box {
+    padding: 10px;
+    margin: 10px;
 }
- 
+
 /*------------room------------*/
 /*------------timer------------*/
 .timer {
