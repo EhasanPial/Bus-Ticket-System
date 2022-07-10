@@ -44,6 +44,11 @@ namespace Bus_Ticket_System.Models
             return context.Buses.Find(id);
         }
 
+
+
+
+        // -------------------------------------- BUS SEAT ------------------------------------------- //
+
         public IEnumerable<BusSeatNew> GetBusSeats()
         {
             return context.BusSeatsNew;
@@ -57,7 +62,7 @@ namespace Bus_Ticket_System.Models
         public BusSeatNew UpdateBusSeat(BusSeatNew? busSeat)
         {
             var bus = context.BusSeatsNew.Attach(busSeat);
-          
+
             bus.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             context.SaveChanges();
             return busSeat;
@@ -76,7 +81,15 @@ namespace Bus_Ticket_System.Models
             context.SaveChanges();
             return busChange;
         }
-
+        public void DeleteBusSeat(int id)
+        {
+            BusSeatNew busSeatNew = context.BusSeatsNew.Find(id);
+            if (busSeatNew != null)
+            {
+                context.BusSeatsNew.Remove(busSeatNew);
+                context.SaveChanges();
+            }
+        }
 
 
 
@@ -133,12 +146,14 @@ namespace Bus_Ticket_System.Models
 
         public IEnumerable<Voucher> GetAllVoucher()
         {
-           return context.Vouchers;
+            return context.Vouchers;
         }
 
         public Voucher GetVourcher(int? id)
         {
             return context.Vouchers.Find(id);
         }
+
+
     }
 }

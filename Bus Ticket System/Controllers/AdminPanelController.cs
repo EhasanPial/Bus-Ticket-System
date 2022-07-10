@@ -199,9 +199,10 @@ namespace Bus_Ticket_System.Controllers
         }
 
         [Route("/Delete/{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, int busSeatId)
         {
             _busDBRepository.Delete(id);
+            _busDBRepository.DeleteBusSeat(busSeatId);
             return RedirectToAction("Bus", "AdminPanel");
         }
 

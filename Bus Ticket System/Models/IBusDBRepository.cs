@@ -16,6 +16,7 @@ namespace Bus_Ticket_System.Models
         BusSeatNew GetBusSeats(int? id);
         BusSeatNew UpdateBusSeat(BusSeatNew? busSeat);
         BusSeatNew AddBusSeat(BusSeatNew? busSeat);
+        void DeleteBusSeat(int id);
 
 
         Ticket AddTicket(Ticket ticket);

@@ -205,7 +205,7 @@
                                 <td>
                                     <div>
                                         <a class="col-sm-1 m-3" asp-action="Edit" asp-route-id="@bus.Id"><i class="fa-solid fa-pen text-success"></i></a>
-                                        <a class="col-sm-1 m-3" asp-action="Delete" asp asp-route-id="@bus.Id"><i class="fa-solid fa-trash text-danger"></i></a>
+                                        <a class="col-sm-1 m-3" asp-action="Delete" asp asp-route-id="@bus.Id" asp-route-busSeatId="@bus.busSeatId"><i class="fa-solid fa-trash text-danger"></i></a>
                                         <a class="col-sm-1 ml-1" asp-action="ResetSeat" asp asp-route-id="@bus.busSeatId"
                                asp-route-busId=@bus.Id><i class="fa-solid fa-retweet text-primary"></i></a>
                                     </div>

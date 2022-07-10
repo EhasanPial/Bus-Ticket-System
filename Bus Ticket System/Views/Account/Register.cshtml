@@ -5,13 +5,70 @@
     ViewBag.Title = "Registration";
 }
 
- 
 
 
 
+<link rel="stylesheet"
+      href="~/css/bootstrap/login.css" />
 
 
-<div class="row">
+<div class="d-lg-flex half">
+    <div class="bg order-1 order-md-2">
+        <img src="~/image/bus.png" />
+        <img width="100%" height="295" src="~/image/bus_2.jpg" />
+    </div>
+    <div class="contents order-2 order-md-1">
+
+        <div class="container" style="font-family: 'Roboto', sans-serif">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7">
+                    <h3><strong>Register</strong></h3>
+                    <form action="#" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group first">
+                            <label class="form-label" asp-for="Email"></label>
+                            <input class="form-control form-control-lg" asp-for="Email" class="form-control" placeholder="example@gmail.com" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" asp-for="PhoneNumber"></label>
+                            <input class="form-control form-control-lg" asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" asp-for="Password"></label>
+                            <input class="form-control form-control-lg" asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" asp-for="ConfirmPassword"></label>
+                            <input class="form-control form-control-lg" asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group last mb-3">
+                            <label class="form-label" asp-for="UserName"></label>
+                            <input class="form-control form-control-lg" asp-for="UserName" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+
+                        </div>
+
+
+
+                        <input type="submit" value="Register" class="btn btn-block btn-primary">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@*
+
+
+    <div class="row">
     <div class="col-md-12">
     <form method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -45,4 +102,4 @@
     <button type="submit" class="btn btn-primary">Register</button>
     </form>
     </div>
-    </div>
+    </div>*@
