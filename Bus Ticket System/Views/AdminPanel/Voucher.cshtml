@@ -33,6 +33,13 @@
                 </div>
 
             </div>
+            <div class="col-sm-2">
+                <label class="form-label" asp-for="@Model.voucher.discount_percent"></label>
+                <div>
+                    <input asp-for="@Model.voucher.discount_percent" class="form-control" style="max-width:90%" />
+                </div>
+
+            </div>
 
             <div style="margin-top:15px">
 
@@ -58,7 +65,8 @@
 
 
                 <th scope="col">ID</th>
-                <th scope="col">CODE</th>
+                <th scope="col">Discount</th>
+                <th scope="col">Code</th>
 
 
             </tr>
@@ -73,6 +81,9 @@
                         <tr>
                             <td>
                                 @voucher.Id
+                            </td>
+                            <td>
+                                @voucher.discount_percent
                             </td>
                             <td>
                                 @voucher.code

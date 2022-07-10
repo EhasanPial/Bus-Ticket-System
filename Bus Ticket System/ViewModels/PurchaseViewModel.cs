@@ -15,6 +15,9 @@ namespace Bus_Ticket_System.ViewModels
         public DateTime journeyTime { get; set; }
 
         public string userId { get; set; }
+        public string voucherCode { get; set; }
+        public bool? checkVoucher { get; set; }
+        public int discount { get; set; }
 
 
     }

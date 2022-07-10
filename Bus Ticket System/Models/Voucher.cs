@@ -7,5 +7,6 @@ namespace Bus_Ticket_System.Models
         [Key]
         public int Id { get; set; }
         public string code { get; set; }
+        public int discount_percent { get; set; }
     }
 }

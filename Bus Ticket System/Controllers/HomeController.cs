@@ -100,7 +100,7 @@ namespace Bus_Ticket_System.Controllers
         [Route("/Purchase/{id}")]
         [HttpGet]
         [Authorize]
-        public async Task<IActionResult> PurchaseAsync(int id, DateTime date, BusBookingViewModel viewModel)
+        public async Task<IActionResult> PurchaseAsync(int id, DateTime date, string voucherCode, int discount, bool? checkVoucher)
         {
             var allSeats = from s in _context.BusSeatsNew
                            select s
@@ -130,12 +130,21 @@ namespace Bus_Ticket_System.Controllers
                 bus = bus,
                 busseatid = busseatId,
                 userId = User.Identity.GetUserId(),
-                journeyTime = date
-
-
+                journeyTime = date,
+                voucherCode = voucherCode,
 
 
             };
+
+
+
+            if (checkVoucher != null && checkVoucher == true)
+            {
+                purchaseViewModel.bus.Cost = purchaseViewModel.bus.Cost - (int)(purchaseViewModel.bus.Cost * (discount/100.00));
+                purchaseViewModel.checkVoucher = checkVoucher;
+                purchaseViewModel.discount = discount; 
+
+            }
 
             return View(purchaseViewModel);
         }
@@ -152,7 +161,7 @@ namespace Bus_Ticket_System.Controllers
             {
 
                 busId = id,
-             
+
                 currentAva = purchaseViewModel.currentAva,
                 name = purchaseViewModel.name,
                 From = purchaseViewModel.bus.From,
@@ -164,7 +173,14 @@ namespace Bus_Ticket_System.Controllers
                 journeyTime = purchaseViewModel.journeyTime
 
             };
+
+            if(purchaseViewModel.checkVoucher == true)
+            {
+                ticket.cost = purchaseViewModel.bus.Cost - (int)(purchaseViewModel.bus.Cost * (purchaseViewModel.discount/100.00));
+            }
+
             _busDBRepository.AddTicket(ticket);
+
             BusSeatNew busSeat = new BusSeatNew
             {
                 Id = purchaseViewModel.busseatid,
@@ -207,14 +223,40 @@ namespace Bus_Ticket_System.Controllers
             if (now < journeyDate)
             {
                 _busDBRepository.DeleteTicket(ticketId);
-               
+
 
             }
 
             return RedirectToAction("purchaseHistory", "Home");
         }
 
+        [Route("voucherCheck")]
+        [HttpPost]
+        public IActionResult voucherCheck(PurchaseViewModel purchaseViewModel)
+        {
+            Bus bus = _busDBRepository.GetBusById(purchaseViewModel.busId);
+            purchaseViewModel.bus = bus;
+
+            IEnumerable<Voucher> vouchers = _busDBRepository.GetAllVoucher();
+            bool checkVoucher = false;
+            int discount = 0;
+            foreach (Voucher voucher in vouchers)
+            {
+                if (voucher != null)
+                {
+                    if (voucher.code.Equals(purchaseViewModel.voucherCode))
+                    {
+                        //purchaseViewModel.bus.Cost -= (int)(purchaseViewModel.bus.Cost * 0.20);
+                        checkVoucher = true;
+                        discount = voucher.discount_percent;
+                    }
+                }
+            }
+
+            return RedirectToAction("Purchase", "Home", new { id = bus.Id, date = purchaseViewModel.journeyTime, voucherCode = purchaseViewModel.voucherCode, discount = discount, checkVoucher = checkVoucher });
+        }
+
     }
-        
+
 
 }

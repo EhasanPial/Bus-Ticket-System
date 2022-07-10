@@ -202,6 +202,7 @@ namespace Bus_Ticket_System.Controllers
                     vouchers = vouchers,
                     voucher = new Voucher()
 
+
                 };
                 ModelState.Clear();
                 return View(voucherAndBoucher);
