@@ -140,16 +140,16 @@ namespace Bus_Ticket_System.Controllers
 
             if (checkVoucher != null && checkVoucher == true)
             {
-                purchaseViewModel.bus.Cost = purchaseViewModel.bus.Cost - (int)(purchaseViewModel.bus.Cost * (discount/100.00));
+                purchaseViewModel.bus.Cost = purchaseViewModel.bus.Cost - (int)(purchaseViewModel.bus.Cost * (discount / 100.00));
                 purchaseViewModel.checkVoucher = checkVoucher;
-                purchaseViewModel.discount = discount; 
+                purchaseViewModel.discount = discount;
 
             }
 
             return View(purchaseViewModel);
         }
 
-
+        // --------------------------------------------- Purchase POST METHOD ------------------------------------- //
         [Route("/Purchase/{id}")]
         [HttpPost]
         [Authorize]
@@ -170,13 +170,27 @@ namespace Bus_Ticket_System.Controllers
                 cost = purchaseViewModel.bus.Cost,
                 purchaseTime = DateTime.Now,
                 userId = purchaseViewModel.userId,
-                journeyTime = purchaseViewModel.journeyTime
+                journeyTime = purchaseViewModel.journeyTime,
+                checkFood = purchaseViewModel.checkFood
+
 
             };
 
-            if(purchaseViewModel.checkVoucher == true)
+            if (purchaseViewModel.checkVoucher == true)
             {
-                ticket.cost = purchaseViewModel.bus.Cost - (int)(purchaseViewModel.bus.Cost * (purchaseViewModel.discount/100.00));
+                ticket.cost = ticket.cost - (int)(ticket.cost * (purchaseViewModel.discount / 100.00));
+            }
+            if (purchaseViewModel.checkFood == true)
+            {
+                if (purchaseViewModel.bus.TourBus == true)
+                {
+                    ticket.cost += (100 * 40);
+                }
+                else
+                {
+                    ticket.cost += 100;
+
+                }
             }
 
             _busDBRepository.AddTicket(ticket);
@@ -187,6 +201,11 @@ namespace Bus_Ticket_System.Controllers
                 busId = id,
                 seatNo = purchaseViewModel.currentAva + 1
             };
+            if (purchaseViewModel.bus.TourBus == true)
+            {
+                busSeat.seatNo = 41;
+            }
+
             _busDBRepository.UpdateBusSeat(busSeat);
 
             return RedirectToAction("purchaseHistory", "home");
@@ -219,6 +238,10 @@ namespace Bus_Ticket_System.Controllers
             Ticket ticket = _busDBRepository.GetTicket(ticketId);
             DateTime now = DateTime.Now;
             DateTime journeyDate = ticket.journeyTime;
+
+
+            ;
+
 
             if (now < journeyDate)
             {

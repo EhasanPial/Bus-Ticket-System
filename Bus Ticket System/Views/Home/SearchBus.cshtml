@@ -36,53 +36,53 @@
 
     <section class="" id="home">
 
- <form asp-action="SearchBus" method="get">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="content grid">
-                    <div class="box col-8">
-                        <label><span>Start Point:</span></label>
-                        <br>
-                        <select name="SearchFrom" class="form-select" required
-                                asp-items="Html.GetEnumSelectList<Route>()">
-                            <option selected value="">Please Select</option>
-                        </select>
+        <form asp-action="SearchBus" method="get">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="content grid">
+                <div class="box col-8">
+                    <label><span>Start Point:</span></label>
+                    <br>
+                    <select name="SearchFrom" class="form-select" required
+                            asp-items="Html.GetEnumSelectList<Route>()">
+                        <option selected value="">Please Select</option>
+                    </select>
 
-                    </div>
-                    <div class="box col-8">
-                        <label><span>Destination:</span></label>
-                        <br />
-                        <select name="SearchTo" class="form-select" required
-                                asp-items="Html.GetEnumSelectList<Route>()">
-                            <option selected value="">Please Select</option>
-                        </select>
-                    </div>
-                    <div class="box col-8">
-                        <label><span>Choose Class:</span></label>
-                        <br>
-                        <select   name="SeachBusType" class="form-select" required
-                                asp-items="Html.GetEnumSelectList<BusType>()">
-                            <option selected value="">Please Select</option>
-                        </select>
-                    </div>
-                    <div class="box col-8">
-
-                        <label><span>Choose Date:</span></label>
-
-                        <input id="datepicker" class="form-control" name="datePassing" type="text" placeholder="" required />
-
-
-                    </div>
                 </div>
-                    <div class="box col-8">
-                        <label><span></span></label>
+                <div class="box col-8">
+                    <label><span>Destination:</span></label>
+                    <br />
+                    <select name="SearchTo" class="form-select" required
+                            asp-items="Html.GetEnumSelectList<Route>()">
+                        <option selected value="">Please Select</option>
+                    </select>
+                </div>
+                <div class="box col-8">
+                    <label><span>Choose Class:</span></label>
+                    <br>
+                    <select name="SeachBusType" class="form-select" required
+                            asp-items="Html.GetEnumSelectList<BusType>()">
+                        <option selected value="">Please Select</option>
+                    </select>
+                </div>
+                <div class="box col-8">
 
-                        <button type="submit" class="flex1">
-                            <span>Find Bus</span>
-                            <i class="fas fa-arrow-circle-right"></i>
-                        </button>
+                    <label><span>Choose Date:</span></label>
 
-                    </div>
-            </form>
+                    <input id="datepicker" class="form-control" name="datePassing" type="text" placeholder="" required />
+
+
+                </div>
+            </div>
+            <div class="box col-8">
+                <label><span></span></label>
+
+                <button type="submit" class="flex1">
+                    <span>Find Bus</span>
+                    <i class="fas fa-arrow-circle-right"></i>
+                </button>
+
+            </div>
+        </form>
 
     </section>
 
@@ -115,6 +115,17 @@
                                     <time>
                                         <span>From: <b style="color:green"> @bus.From</b></span>
                                         <span>To: <b style="color:green"> @bus.To</b></span>
+                                        <span>
+                                            <b style="color:green">
+                                                @{
+                                                    if (@bus.TourBus == true)
+                                                    {
+                                                        <span>Tour Bus</span>
+
+                                                    }
+                                                }
+                                            </b>
+                                        </span>
 
                                     </time>
 
@@ -122,15 +133,19 @@
                                 <div class="even-info">
                                     <i class="fa-solid fa-receipt"></i>
                                     <p>
-                                        Cost: <span style="color:green; font-weight:600">@bus.Cost Tk</span>
+                                        Cost: <span style="color:green; font-weight:600">
+
+                                            <span>@bus.Cost</span>
+
+                                        </span>
                                     </p>
-                                    <i class="fa-solid fa-clock"></i>   
+                                    <i class="fa-solid fa-clock"></i>
                                     <p>
                                         Journey Time: <span style="color:green">@bus.Time.ToString("hh"):@bus.Time.ToString("mm") @bus.Time.ToString("tt")</span>
                                     </p>
                                 </div>
                                 <a id="card-cont-a" asp-action="Purchase"
-                                    asp-route-id=@bus.Id asp-route-date=@Model.datePassing>BUY</a>
+                       asp-route-id=@bus.Id asp-route-date=@Model.datePassing>BUY</a>
                             </section>
                         </article>
 

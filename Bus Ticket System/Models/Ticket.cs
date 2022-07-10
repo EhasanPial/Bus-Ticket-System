@@ -19,5 +19,6 @@ namespace Bus_Ticket_System.Models
         public DateTime journeyTime { get; set; }
 
         public string userId { get; set; }
+        public bool checkFood { get; set; }
     }
 }

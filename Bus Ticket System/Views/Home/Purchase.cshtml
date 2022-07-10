@@ -37,7 +37,23 @@
     <div class="row_x row bg-light p-lg-2 mb-2">
         <span class="col-3 font-weight-bolder">Seat No:</span>
         <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.currentAva</span>
+        @if (@Model.bus.TourBus == false)
+        {
+            if (@Model.currentAva >= 40)
+            {
+                <span class="col-4 details_x text-danger">No seat available</span>
+
+            }
+            else
+            {
+                <span class="col-4 details_x">@Model.currentAva</span>
+            }
+        }
+        else
+        {
+            <span class="col-4 details_x text-danger">All Seats</span>
+        }
+
 
     </div>
     <div class="row_x row bg-light p-lg-2 mb-2">
@@ -72,26 +88,44 @@
 
         </form>
     </div>
-
-
-
-
-
-
     <form method="post" asp-action="purchase">
-        <input asp-for=@Model.busId type="hidden" value=@Model.busId />
-        <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
-        <input asp-for=@Model.name type="hidden" value=@Model.name />
-        <input asp-for=@Model.userId type="hidden" value=@Model.userId />
-        <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
-        <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
-        <input asp-for=@Model.checkVoucher type="hidden" value=@Model.checkVoucher />
-        <input asp-for=@Model.voucherCode type="hidden" value=@Model.voucherCode />
-        <input asp-for=@Model.discount type="hidden" value=@Model.discount />
+        <div class="row_x2 row p-lg-2 mb-2">
+            <div class="form-check col-4">
+                <input asp-for="checkFood" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                <label asp-for="checkFood" class="form-check-label">
+                    Food Service (Lunch, Dinner: 100TK)
+                </label>
+            </div>
+
+            <div class="col float-right">
+
+                <input asp-for=@Model.busId type="hidden" value=@Model.busId />
+                <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
+                <input asp-for=@Model.name type="hidden" value=@Model.name />
+                <input asp-for=@Model.userId type="hidden" value=@Model.userId />
+                <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
+                <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
+                <input asp-for=@Model.checkVoucher type="hidden" value=@Model.checkVoucher />
+                <input asp-for=@Model.voucherCode type="hidden" value=@Model.voucherCode />
+                <input asp-for=@Model.discount type="hidden" value=@Model.discount />
 
 
-        <button class="btn rounded bg-primary text-white" style="float:right; margin-right:109px; margin-top:12px" type="submit" value="">Confirm</button>
+                @if (@Model.currentAva >= 40)
+                {
 
+
+                }
+                else
+                {
+                    <button class="btn rounded bg-primary text-white" style="float:right; margin-top: 12px;" type="submit" value="">Confirm</button>
+                }
+
+
+            </div>
+
+        </div>
     </form>
+
+
 
 </div>

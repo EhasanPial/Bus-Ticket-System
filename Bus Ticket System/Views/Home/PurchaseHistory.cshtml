@@ -72,6 +72,24 @@
 
                 </div>
 
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Food:</span>
+
+                    <span class="col-sm-3 details_x">
+                        @{
+                            if (@userTicket.checkFood == true)
+                            {
+                                <span>YES</span>
+                            }
+                            else
+                            {
+                                <span>NO</span>
+                            }
+                        }
+                    </span>
+
+                </div>
+
                 <a asp-action=returnTicket asp-route-ticketId=@userTicket.Id class="btn btn-primary text-white rounded mt-1" style="width:80px ;display:flex; justify-content:right; align-items:flex-end">Return</a>
 
 

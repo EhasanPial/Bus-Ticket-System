@@ -77,6 +77,16 @@
                 <span asp-validation-for="@Model.bus.Time" class="text-danger"></span>
 
             </div>
+            <div class="col-sm-3">
+                <div class="form-check col-4">
+                    <input asp-for="@Model.bus.TourBus" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                    <label asp-for="@Model.bus.TourBus" class="form-check-label">
+                        Tour Bus
+                    </label>
+                </div>
+
+
+            </div>
 
 
             <div style="margin-top:15px">
@@ -146,6 +156,7 @@
 
                     <th scope="col"> <a asp-action="Bus" asp-route-sortOrder="@ViewData["IdSortParam"]">ID</a></th>
                     <th scope="col">TYPE</th>
+                    <th scope="col">Tour Bus</th>
                     <th scope="col">FROM</th>
                     <th scope="col">TO</th>
                     <th scope="col">JOURNEY TIME</th>
@@ -167,6 +178,9 @@
                                 </td>
                                 <td>
                                     @bus.Type
+                                </td>
+                                <td>
+                                    @bus.TourBus
                                 </td>
                                 <td>
                                     @bus.From

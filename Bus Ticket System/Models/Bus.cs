@@ -17,5 +17,7 @@ namespace Bus_Ticket_System.Models
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
         public DateTime Time { get; set; }
+
+        public bool TourBus { get; set; }
     }
 }

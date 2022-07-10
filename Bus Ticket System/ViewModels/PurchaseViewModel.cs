@@ -18,6 +18,8 @@ namespace Bus_Ticket_System.ViewModels
         public string voucherCode { get; set; }
         public bool? checkVoucher { get; set; }
         public int discount { get; set; }
+        public bool checkFood { get; set; }
+
 
 
     }

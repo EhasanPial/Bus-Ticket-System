@@ -8,13 +8,13 @@
 
 .rec_main {
     width: 74%;
-    height: 493px;
+    height: 500px;
     background: #FFFEFE;
     border-bottom: 2px solid black;
     border-top: 2px solid black;
     border-left: 2px solid black;
     border-right: 2px solid black;
-    margin-top: 3%;
+    margin-top: 1%;
 }
 
 .bd_pori {
