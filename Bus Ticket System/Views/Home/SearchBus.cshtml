@@ -124,13 +124,28 @@
                                 <div class="even-date">
                                     <i class="fa-solid fa-location-dot p-1 "></i>
                                     <time>
-                                        <span><b style="color:green"> @bus.From</b>  <i class="fa-solid fa-van-shuttle"></i>
-                                         <b style="color:green">    @bus.To</b></span>
+                                        <span>
+                                            <b style="color:green"> @bus.From</b>  <i class="fa-solid fa-van-shuttle"></i>
+                                            <b style="color:green">    @bus.To</b>
+                                        </span>
+
+
                                     </time>
 
                                 </div>
+                                <div class="even-date">
+                                    <i class="fa-solid fa-fan"></i>  
+                                    <time>
+                                        <span class="pt-2 mt-2">
+
+                                           <b style="color:green"> @bus.Type</b>
+                                        </span>
+
+                                    </time>
+
+                                </div> 
                                 <div class="even-info">
-                                    <i class="fa-solid fa-receipt"></i>
+                                    <i class="fa-solid fa-receipt p-1 text-black"></i>
                                     <p>
                                         Cost: <span style="color:green; font-weight:600">
 
@@ -138,13 +153,30 @@
 
                                         </span>
                                     </p>
-                                    <i class="fa-solid fa-clock"></i>
+                                    <i class="fa-solid fa-clock p-1 text-black"></i>
                                     <p>
                                         Journey Time: <span style="color:green">@bus.Time.ToString("hh"):@bus.Time.ToString("mm") @bus.Time.ToString("tt")</span>
                                     </p>
                                 </div>
-                                <a id="card-cont-a" asp-action="Purchase"
-                       asp-route-id=@bus.Id asp-route-date=@Model.datePassing>BUY</a>
+
+
+                                @if ((@DateTime.Now.Date <= @Model.datePassing.Date))
+                                {
+
+                                    if ((@DateTime.Now.Date == @Model.datePassing.Date) && (@DateTime.Now.TimeOfDay > @bus.Time.TimeOfDay))
+                                    {
+                                        <a id="card-cont-a" asp-action="XXX" class="bg-danger text-white" style="pointer-events: none !important; cursor: default;">BUS LEFT</a>
+                                    }
+                                    else
+                                    {
+                                        <a id="card-cont-a" asp-action="Purchase" asp-route-id=@bus.Id asp-route-date=@Model.datePassing>BUY</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a id="card-cont-a" asp-action="XXX" class="bg-danger text-white" style="pointer-events: none !important; cursor: default;">BUS LEFT</a>
+                                }
+
                             </section>
                         </article>
 

@@ -73,6 +73,7 @@ namespace Bus_Ticket_System.Controllers
             foreach (Bus bu in buses)
             {
                 bu.ava_seat = 41 - _busDBRepository.GetBusSeats(bu.busSeatId).seatNo;
+                _busDBRepository.Update(bu);
                 if (bu != null)
                     busesModified.Add(bu);
 
@@ -128,8 +129,8 @@ namespace Bus_Ticket_System.Controllers
                     {
                         Buses = buses,
                         bus = new Bus()
-
                     };
+
                     ModelState.Clear();
                     return View(busAndListBusViewModels);
                 }
@@ -137,6 +138,7 @@ namespace Bus_Ticket_System.Controllers
             }
             else
             {
+                ModelState.Clear();
                 return View();
             }
 

@@ -6,126 +6,146 @@
 
 
 
-<style>
 
 
-</style>
+@if ((@DateTime.Now.Date <= @Model.journeyTime.Date))
+{
 
+    if ((@DateTime.Now.Date == @Model.journeyTime.Date) && (@DateTime.Now.TimeOfDay > @Model.bus.Time.TimeOfDay))
+    {
+        <p class="bg-danger text-white p-2 m-5 ">Sorry! Bus Left</p>
+    }
+    else
+    {
+        <div class="rec_main container-sm rounded mb-lg-5 ">
+            <p class="bd_pori mt-4 mb-4">TICKET</p>
 
+            <div class="row_x row bg-light p-lg-2 mb-2">
+                <span class="col-3 font-weight-bolder">Passenger Name:</span>
+                <p class="col-1"></p>
+                <span class="col-4 details_x">@Model.name</span>
 
-<div class="rec_main container-sm rounded mb-lg-5 ">
-    <p class="bd_pori mt-4 mb-4">TICKET</p>
-
-    <div class="row_x row bg-light p-lg-2 mb-2">
-        <span class="col-3 font-weight-bolder">Passenger Name:</span>
-        <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.name</span>
-
-    </div>
-    <div class="row_x row bg-light p-lg-2 mb-2">
-        <span class="col-3 font-weight-bolder">From:</span>
-        <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.bus.From</span>
-
-    </div>
-    <div class="row_x row bg-light p-lg-2 mb-2">
-        <span class="col-3 font-weight-bolder">To:</span>
-        <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.bus.To</span>
-
-    </div>
-    <div class="row_x row bg-light p-lg-2 mb-2">
-        <span class="col-3 font-weight-bolder">Seat No:</span>
-        <p class="col-1"></p>
-        @if (@Model.bus.TourBus == false)
-        {
-            if (@Model.currentAva >= 40)
-            {
-                <span class="col-4 details_x text-danger">No seat available</span>
-
-            }
-            else
-            {
-                <span class="col-4 details_x">@Model.currentAva</span>
-            }
-        }
-        else
-        {
-            <span class="col-4 details_x text-danger">All Seats</span>
-        }
-
-
-    </div>
-    <div class="row_x row bg-light p-lg-2 mb-2">
-        <span class="col-3 font-weight-bolder">Cost:</span>
-        <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.bus.Cost TK</span>
-
-    </div>
-    <div class="row_x row bg-light p-lg-2 mb-2">
-        <span class="col-3 font-weight-bolder">Journey Time:</span>
-        <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.journeyTime.ToString("D") @Model.bus.Time.ToString("hh:mm tt")</span>
-
-    </div>
-    <div class="row_x2  p-lg-2 mb-2 input-group align-items-center">
-        <span class="col-3 font-weight-bolder">Voucher Code:</span>
-        <p class="col-1"></p>
-        <form class="col-3" method="post" asp-action="voucherCheck">
-            <input asp-for=@Model.busId type="hidden" value=@Model.busId />
-            <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
-            <input asp-for=@Model.name type="hidden" value=@Model.name />
-            <input asp-for=@Model.userId type="hidden" value=@Model.userId />
-            <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
-            <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
-            <div class="input-group">
-                <input type="text" asp-for="voucherCode" class="rounded form-control " style="padding-left:5px ; max-width:100%" placeholder="Voucher" />
-                <div class="input-group-append">
-                    <button class="btn-sm btn-outline-secondary text-white align-baseline" style="margin-left:5px" type="submit" value="">Apply</button>
-                </div>
             </div>
+            <div class="row_x row bg-light p-lg-2 mb-2">
+                <span class="col-3 font-weight-bolder">From:</span>
+                <p class="col-1"></p>
+                <span class="col-4 details_x">@Model.bus.From</span>
 
-
-        </form>
-    </div>
-    <form method="post" asp-action="purchase">
-        <div class="row_x2 row p-lg-2 mb-2">
-            <div class="form-check col-4">
-                <input asp-for="checkFood" class="form-check-input" type="checkbox" id="flexCheckDefault">
-                <label asp-for="checkFood" class="form-check-label">
-                    Food Service (Lunch, Dinner: 100TK)
-                </label>
             </div>
+            <div class="row_x row bg-light p-lg-2 mb-2">
+                <span class="col-3 font-weight-bolder">To:</span>
+                <p class="col-1"></p>
+                <span class="col-4 details_x">@Model.bus.To</span>
 
-            <div class="col float-right">
-
-                <input asp-for=@Model.busId type="hidden" value=@Model.busId />
-                <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
-                <input asp-for=@Model.name type="hidden" value=@Model.name />
-                <input asp-for=@Model.userId type="hidden" value=@Model.userId />
-                <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
-                <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
-                <input asp-for=@Model.checkVoucher type="hidden" value=@Model.checkVoucher />
-                <input asp-for=@Model.voucherCode type="hidden" value=@Model.voucherCode />
-                <input asp-for=@Model.discount type="hidden" value=@Model.discount />
-
-
-                @if (@Model.currentAva >= 40)
+            </div>
+            <div class="row_x row bg-light p-lg-2 mb-2">
+                <span class="col-3 font-weight-bolder">Seat No:</span>
+                <p class="col-1"></p>
+                @if (@Model.bus.TourBus == false)
                 {
+                    if (@Model.currentAva >= 40)
+                    {
+                        <span class="col-4 details_x text-danger">No seat available</span>
 
-
+                    }
+                    else
+                    {
+                        <span class="col-4 details_x">@Model.currentAva</span>
+                    }
                 }
                 else
                 {
-                    <button class="btn rounded bg-primary text-white" style="float:right; margin-top: 12px;" type="submit" value="">Confirm</button>
+                    <span class="col-4 details_x text-danger">All Seats</span>
                 }
 
 
             </div>
+            <div class="row_x row bg-light p-lg-2 mb-2">
+                <span class="col-3 font-weight-bolder">Cost:</span>
+                <p class="col-1"></p>
+                <span class="col-4 details_x">@Model.bus.Cost TK</span>
+
+            </div>
+            <div class="row_x row bg-light p-lg-2 mb-2">
+                <span class="col-3 font-weight-bolder">Journey Time:</span>
+                <p class="col-1"></p>
+                <span class="col-4 details_x">@Model.journeyTime.ToString("D") @Model.bus.Time.ToString("hh:mm tt")</span>
+
+            </div>
+            <div class="row_x2  p-lg-2 mb-2 input-group align-items-center">
+                <span class="col-3 font-weight-bolder">Voucher Code:</span>
+                <p class="col-1"></p>
+                <form class="col-3" method="post" asp-action="voucherCheck">
+                    <input asp-for=@Model.busId type="hidden" value=@Model.busId />
+                    <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
+                    <input asp-for=@Model.name type="hidden" value=@Model.name />
+                    <input asp-for=@Model.userId type="hidden" value=@Model.userId />
+                    <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
+                    <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
+                    <div class="input-group">
+                        <input type="text" asp-for="voucherCode" class="rounded form-control " style="padding-left:5px ; max-width:100%" placeholder="Voucher" />
+                        <div class="input-group-append">
+                            <button class="btn-sm btn-outline-secondary text-white align-baseline" style="margin-left:5px" type="submit" value="">Apply</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <form method="post" asp-action="purchase">
+                <div class="row_x2 row p-lg-2 mb-2">
+                    <div class="form-check col-4">
+                        <input asp-for="checkFood" class="form-check-input" type="checkbox" id="flexCheckDefault">
+                        <label asp-for="checkFood" class="form-check-label">
+                            Food Service (Lunch, Dinner: 100TK)
+                        </label>
+                    </div>
+
+                    <div class="col float-right">
+
+                        <input asp-for=@Model.busId type="hidden" value=@Model.busId />
+                        <input asp-for=@Model.currentAva type="hidden" value=@Model.currentAva />
+                        <input asp-for=@Model.name type="hidden" value=@Model.name />
+                        <input asp-for=@Model.userId type="hidden" value=@Model.userId />
+                        <input asp-for=@Model.busseatid type="hidden" value=@Model.busseatid />
+                        <input asp-for=@Model.journeyTime type="hidden" value=@Model.journeyTime />
+                        <input asp-for=@Model.checkVoucher type="hidden" value=@Model.checkVoucher />
+                        <input asp-for=@Model.voucherCode type="hidden" value=@Model.voucherCode />
+                        <input asp-for=@Model.discount type="hidden" value=@Model.discount />
+
+
+                        @if (@Model.currentAva >= 40)
+                        {
+
+
+                        }
+                        else
+                        {
+
+                            <button class="btn rounded bg-primary text-white" style="float:right; margin-top: 12px;" type="submit" value="">Confirm</button>
+
+                        }
+
+
+                    </div>
+
+                </div>
+            </form>
+
+
 
         </div>
-    </form>
+
+    }
 
 
 
-</div>
+}
+else
+{
+
+    <p class="bg-danger text-white p-2 m-5">Sorry! Bus Left</p>
+
+}
+
+

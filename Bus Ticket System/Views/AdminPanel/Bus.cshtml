@@ -176,9 +176,16 @@
                                 <td>
                                     @bus.Type
                                 </td>
-                                <td>
-                                    @bus.TourBus
-                                </td>
+
+                                @if (@bus.TourBus == true)
+                                {
+                                    <td> Tour Bus</td>
+                                }
+                                else
+                                {
+                                    <td> Normal Bus</td>
+                                }
+                    
                                 <td>
                                     @bus.ava_seat
                                 </td>
