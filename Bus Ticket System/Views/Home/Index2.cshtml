@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bus>
+﻿@model Index2ViewModel
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -43,13 +43,24 @@
 
     <section class="home" id="home">
         <div class="container">
+
             <h1 class="text-white">BD Poribohon</h1>
-            <p class="text-white">Bangladesh's one of the largest bus company</p>
+            @if (@Model.username != null)
+            {
+                <p class="text-white">Hello, @Model.username</p>
+                <p class="text-white">Welcome again.</p>
+            }
+            else
+            {
+
+                <p class="text-white">Bangladesh's one of the largest bus company</p>
+            }
 
             <form asp-action="SearchBus" method="get">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="content grid">
                     <div class="box">
+
                         <label><span>Start Point:</span></label>
                         <br>
                         <select name="SearchFrom" class="form-select" required
@@ -143,14 +154,14 @@
             <div class="content grid mtop">
 
                 @{
-                    if (Model.Count() <= 0)
+                    if (Model.allBus.Count() <= 0)
                     {
                         <p>No bus</p>
                     }
                     else
                     {
 
-                        @foreach (Bus bus in @Model)
+                        @foreach (Bus bus in @Model.allBus)
                         {
                             Enum dhaka = Route.Dhaka;
                             if (!bus.From.Equals(dhaka)) continue;
@@ -265,7 +276,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="box flex">
                     <div class="left">
                         <img src="~/image/bandanbar.jpg" alt="">
@@ -293,12 +304,12 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="box flex">
                     <div class="left">
                         <img src="~/image/shylet.jpg" alt="">
                     </div>
-                   <div class="right">
+                    <div class="right">
                         <h4>Dhaka To Shylet </h4>
                         <div class="rate flex">
                             <i class="fas fa-star"></i>
@@ -325,7 +336,7 @@
                     <div class="left">
                         <img src="~/image/kuakata.jpg" alt="">
                     </div>
-                     <div class="right">
+                    <div class="right">
                         <h4>Dhaka To Kuakata </h4>
                         <div class="rate flex">
                             <i class="fas fa-star"></i>
@@ -347,8 +358,8 @@
 
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
     </section>
 
 

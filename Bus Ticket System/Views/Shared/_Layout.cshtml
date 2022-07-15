@@ -1,5 +1,6 @@
 ﻿@inject SignInManager<ApplicationUser> signInManger;
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,6 @@
     }*@
 <body style="background-color:#fff;">
 
-
     <div class="sticky-toggle">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="ftco-navbar">
             <div class="container">
@@ -76,9 +76,11 @@
                 </button>
                 <div class="collapse navbar-collapse order-sm-start order-lg-last" id="ftco-nav">
                     <ul class="navbar-nav m-auto">
+                       
                         <li class="nav-item">
                             <a asp-action="Index2"
                                asp-controller="Home" class="nav-link active">
+
                                 Home
                                 <span class="visually-hidden">(current)</span>
                             </a>
@@ -88,23 +90,23 @@
                             @if (User.IsInRole("Admin"))
                             {
 
-                                                <li class="nav-item">
-                                                    <a asp-action="Index"
+                                <li class="nav-item">
+                                    <a asp-action="Index"
                                asp-controller="AdminPanel" class="nav-link">Admin Panel</a>
-                                                </li>
+                                </li>
 
                             }
                             else
                             {
-                                                <li class="nav-item">
-                                                    <a asp-action="PurchaseHistory"
+                                <li class="nav-item">
+                                    <a asp-action="PurchaseHistory"
                                asp-controller="Home" class="nav-link">Purchase History</a>
-                                                </li>
+                                </li>
                             }
-                                    <li class="nav-item">
-                                        <a asp-action="logoutCheck"
+                            <li class="nav-item">
+                                <a asp-action="logoutCheck"
                                asp-controller="account" class="nav-link">Logout</a>
-                                    </li>
+                            </li>
                             @* <li class="nav-item">
                                 <form class="nav-link m-auto" method="post" asp-action="logout" asp-controller="Account">
 
@@ -117,15 +119,15 @@
 
                         else
                         {
-                                    <li class="nav-item">
-                                        <a asp-action="login"
+                            <li class="nav-item">
+                                <a asp-action="login"
                                asp-controller="Account" class="nav-link">Login</a>
-                                    </li>
+                            </li>
 
-                                    <li class="nav-item">
-                                        <a asp-action="Register"
+                            <li class="nav-item">
+                                <a asp-action="Register"
                                asp-controller="Account" class="nav-link">Register</a>
-                                    </li>
+                            </li>
 
                         }
 

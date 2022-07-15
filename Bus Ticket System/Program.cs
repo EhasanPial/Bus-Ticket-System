@@ -46,6 +46,9 @@ builder.Services.AddMvc(config =>
     config.Filters.Add(new AuthorizeFilter(policy));
 });
 
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
 
 
 var app = builder.Build();
@@ -58,8 +61,7 @@ app.MapControllers();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
-
+app.UseSession();
 // for attribute routing
 
 

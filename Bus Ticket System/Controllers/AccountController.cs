@@ -45,6 +45,11 @@ namespace Bus_Ticket_System.Controllers
                 if (result.Succeeded)
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
+
+                    CookieOptions cookieOptions = new CookieOptions();
+                    cookieOptions.Expires = DateTime.Now.AddDays(2);
+                    Response.Cookies.Append("user_name",user.UserName,cookieOptions);
+
                     return RedirectToAction("index2", "home");
                 }
 
@@ -63,6 +68,12 @@ namespace Bus_Ticket_System.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
+
+            if (Request.Cookies["user_name"] != null)
+            {
+                Response.Cookies.Delete("user_name");
+            }
+
             return RedirectToAction("index2", "home");
         }
         [Route("logoutCheck")]
@@ -109,6 +120,12 @@ namespace Bus_Ticket_System.Controllers
                         }
                         else
                         {
+
+                            CookieOptions cookieOptions = new CookieOptions();
+                            cookieOptions.Expires = DateTime.Now.AddDays(2);
+                           
+                            Response.Cookies.Append("user_name", loginViewModel.Name, cookieOptions);
+
                             return RedirectToAction("index2" +
                                 "", "home");
                         }

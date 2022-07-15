@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace Bus_Ticket_System.Controllers
 {
@@ -30,14 +31,7 @@ namespace Bus_Ticket_System.Controllers
         }
 
 
-        // [Route("~/")] // "localhost:5000/"   // root of website
-        // [Route("")] // "localhost:5000/home" [Route("/Home")]  
-        [Route("[action]")]  // localhost:5000/home/index
-        [AllowAnonymous]
-        public IActionResult Index()
-        {
-            return View();
-        }
+
 
         [Route("~/")] // "localhost:5000/"   // root of website
         [Route("")] // "localhost:5000/home" [Route("/Home")]  
@@ -48,16 +42,34 @@ namespace Bus_Ticket_System.Controllers
             IEnumerable<Bus> allBus = _busDBRepository.GetAllBus();
             List<Bus> busesList = new List<Bus>();
 
+            Index2ViewModel viewModel = new Index2ViewModel();
+
+            if (Request.Cookies["user_name"] != null)
+            {
+                viewModel.username = Request.Cookies["user_name"];
+            }
+
+
+            // Session
+
+            if(signInManager.IsSignedIn(User))
+            {
+                HttpContext.Session.SetString("UserInfo", Newtonsoft.Json.JsonConvert.SerializeObject(User.Identity.GetUserName()));
+            }
+
+
             Enum dhaka = Models.Route.Dhaka;
+
             for (int i = 0; i < 4; i++)
             {
-                 
-                    busesList.Add(allBus.ElementAt(i)); 
-                
-            }
- 
 
-            return View(busesList);
+                busesList.Add(allBus.ElementAt(i));
+
+            }
+
+            viewModel.allBus = busesList;
+
+            return View(viewModel);
         }
 
 
@@ -120,11 +132,13 @@ namespace Bus_Ticket_System.Controllers
 
             Bus bus = _busDBRepository.GetBusById(id);
 
+            string user = JsonConvert.DeserializeObject<string>(HttpContext.Session.GetString("UserInfo"));
+
             PurchaseViewModel purchaseViewModel = new PurchaseViewModel
             {
                 busId = id,
                 currentAva = currentAva,
-                name = User.Identity.GetUserName(),
+                name = user,
                 bus = bus,
                 busseatid = busseatId,
                 userId = User.Identity.GetUserId(),
@@ -175,7 +189,7 @@ namespace Bus_Ticket_System.Controllers
 
             };
 
-            
+
 
             if (purchaseViewModel.checkVoucher == true)
             {
