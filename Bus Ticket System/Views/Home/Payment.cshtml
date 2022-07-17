@@ -10,9 +10,11 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<div class="rec_main container-sm rounded mb-lg-5 ">
-    <p class="bd_pori mt-4 mb-4">Payment</p>
-    <p class="col-4 details_x text-danger  "><b>Send money via Bkash to 01705821821  and put transaction number below.</b></p>
+<div class="rec_main container-sm rounded mb-lg-5" style="border: 4px solid #593196">
+
+
+
+    <p class="bd_pori col-4 details_x text-danger text-secondary mb-4"> Send money via <strong>Bkash</strong> to <strong>01705821821</strong> and put transaction number below</p>
 
 
     <div class="row_x row bg-light p-lg-2 mb-2">
@@ -24,7 +26,7 @@
     <div class="row_x row bg-light p-lg-2 mb-2">
         <span class="col-3 font-weight-bolder">To Pay:</span>
         <p class="col-1"></p>
-        <span class="col-4 details_x">@Model.cost TK</span>
+        <span class="col-4 details_x text-success font-weight-bold">@Model.cost TK</span>
 
     </div>
 
@@ -32,11 +34,11 @@
     <form method="post" asp-action="payment2">
 
         <div class="row_x row bg-white p-lg-2 mb-2">
-            <label asp-for="phone" class="col-3 font-weight-bolder text-danger align-items-center bg-light">Phone Number:</label>
+            <span asp-for="phone" class="col-3  text-danger align-items-center bg-light"><strong>Phone Number:</strong></span>
             <input type="text" asp-for="phone" class="rounded form-control col-3  " style="padding-left:5px ; max-width:50%" placeholder="Phone No." />
         </div>
         <div class="row_x row bg-white p-lg-2 mb-2">
-            <label asp-for="transactionNumber" class="col-3 font-weight-bolder text-danger align-items-center  bg-light">Transaction Number:</label>
+            <label asp-for="transactionNumber" class="col-3 text-danger align-items-center  bg-light"><strong>Transaction Number:</strong></label>
             <input type="text" asp-for="transactionNumber" class="rounded form-control col-3" style="padding-left:5px ; max-width:50%" placeholder="Transaction Number" />
 
         </div>
@@ -44,21 +46,21 @@
 
             <div class="col float-right">
 
-                <input type="hidden" asp-for="busId" value="@Model.busId"/>
-                <input type="hidden" asp-for="busTime" value="@Model.busTime"/>
-                <input type="hidden" asp-for="checkFood" value="@Model.checkFood"/>
-                <input type="hidden" asp-for="cost" value="@Model.cost"/>
-                <input type="hidden" asp-for="currentAva" value="@Model.currentAva"/>
-                <input type="hidden" asp-for="From" value="@Model.From"/>
-                <input type="hidden" asp-for="Id" value="@Model.Id"/>
-                <input type="hidden" asp-for="isConfirmed" value="@Model.isConfirmed"/>
-                <input type="hidden" asp-for="journeyTime" value="@Model.journeyTime"/>
-                <input type="hidden" asp-for="name" value="@Model.name"/> 
-                <input type="hidden" asp-for="purchaseTime" value="@Model.purchaseTime"/>
-                <input type="hidden" asp-for="To" value="@Model.To"/>
-                <input type="hidden" asp-for="userId" value="@Model.userId"/> 
+                <input type="hidden" asp-for="busId" value="@Model.busId" />
+                <input type="hidden" asp-for="busTime" value="@Model.busTime" />
+                <input type="hidden" asp-for="checkFood" value="@Model.checkFood" />
+                <input type="hidden" asp-for="cost" value="@Model.cost" />
+                <input type="hidden" asp-for="currentAva" value="@Model.currentAva" />
+                <input type="hidden" asp-for="From" value="@Model.From" />
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="hidden" asp-for="isConfirmed" value="@Model.isConfirmed" />
+                <input type="hidden" asp-for="journeyTime" value="@Model.journeyTime" />
+                <input type="hidden" asp-for="name" value="@Model.name" />
+                <input type="hidden" asp-for="purchaseTime" value="@Model.purchaseTime" />
+                <input type="hidden" asp-for="To" value="@Model.To" />
+                <input type="hidden" asp-for="userId" value="@Model.userId" />
 
-                <button class="btn rounded bg-success text-white" style="float:right; margin-top: 12px;" type="submit" value="">Confirm Payment</button>
+                <button class="btn rounded bg-primary text-white" style="float:right; margin-top: 12px;" type="submit" value="">Confirm Payment</button>
 
 
 
