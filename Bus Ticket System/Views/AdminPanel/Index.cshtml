@@ -247,6 +247,7 @@
 
                         <th scope="col">ID</th>
                         <th scope="col">Bus ID</th>
+                        <th scope="col">Validity</th>
                         <th scope="col">Seat No</th>
                         <th scope="col">Customer Name</th>
                         <th scope="col">Cost</th>
@@ -273,6 +274,19 @@
                                 <td>
                                     @ticket.busId
                                 </td>
+
+                                @if (@ticket.isConfirmed == 1)
+                                {
+                                    <td class="text-warning"><strong>Not Confirmed</strong></td>
+                                }
+                                else if (@ticket.isConfirmed == 2)
+                                {
+                                    <td class="text-success"><strong>Confirmed</strong></td>
+                                }
+                                else
+                                {
+                                    <td class="text-danger"><strong>Canceled</strong></td>
+                                }
                                 <td>
                                     @ticket.currentAva
 

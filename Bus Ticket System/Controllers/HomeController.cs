@@ -52,7 +52,7 @@ namespace Bus_Ticket_System.Controllers
 
             // Session
 
-            if(signInManager.IsSignedIn(User))
+            if (signInManager.IsSignedIn(User))
             {
                 HttpContext.Session.SetString("UserInfo", Newtonsoft.Json.JsonConvert.SerializeObject(User.Identity.GetUserName()));
             }
@@ -209,7 +209,7 @@ namespace Bus_Ticket_System.Controllers
                 }
             }
 
-            _busDBRepository.AddTicket(ticket);
+            //   = _busDBRepository.AddTicket(ticket);
 
             BusSeatNew busSeat = new BusSeatNew
             {
@@ -224,7 +224,7 @@ namespace Bus_Ticket_System.Controllers
 
             _busDBRepository.UpdateBusSeat(busSeat);
 
-            return RedirectToAction("purchaseHistory", "home");
+            return RedirectToAction("payment", "home", ticket);
         }
 
         [Route("purchaseHistory")]
@@ -246,6 +246,67 @@ namespace Bus_Ticket_System.Controllers
                 }
             }
             return View(userTicket);
+        }
+
+        [Route("Payment")]
+        [HttpGet]
+        [Authorize]
+        public IActionResult Payment(Ticket ticket)
+        {
+            string user = JsonConvert.DeserializeObject<string>(HttpContext.Session.GetString("UserInfo"));
+
+            Ticket ticket1 = ticket;
+            
+            ticket1.name = user;
+
+            PaymentViewModel paymentViewModel = new PaymentViewModel
+            {
+                ticket = ticket1
+            };
+
+
+            return View(ticket);
+        }
+
+        [Route("Payment2")]
+        [HttpPost]
+        [Authorize]
+        public IActionResult Payment2(Ticket mticket)
+        {
+            string user = JsonConvert.DeserializeObject<string>(HttpContext.Session.GetString("UserInfo"));
+
+
+
+            Ticket ticket = new Ticket
+            {
+                busId = mticket.busId,
+                currentAva = mticket.currentAva,
+                name = user,
+                From = mticket.From,
+                To = mticket.To,
+                busTime = mticket.busTime,
+                cost = mticket.cost,
+                purchaseTime = mticket.purchaseTime,
+                userId = mticket.userId,
+                journeyTime = mticket.journeyTime,
+                checkFood = mticket.checkFood,
+                phone = mticket.phone,
+                transactionNumber = mticket.transactionNumber,
+                isConfirmed = 1
+
+
+
+            };
+
+/*
+            ticket.name = user;
+            ticket.isConfirmed = 1; // 1 = not confirmed, 2 = confirmed , 3 = cencel
+            ticket.phone = paymentViewModel.phone;
+            ticket.transactionNumber = paymentViewModel.transactionNumber;*/
+            _busDBRepository.AddTicket(ticket);
+
+
+            return RedirectToAction("purchaseHistory", "home");
         }
         [Route("returnTicket")]
         [Authorize]

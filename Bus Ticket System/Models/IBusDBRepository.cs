@@ -23,6 +23,7 @@ namespace Bus_Ticket_System.Models
         void DeleteTicket(int? id);
         IEnumerable<Ticket> GetAllTicket();
         Ticket GetTicket(int? id);
+        Ticket UpdateTicket(Ticket ticket);
 
         Voucher AddVoucher(Voucher voucher);
         void DeleteVoucher(int? id);

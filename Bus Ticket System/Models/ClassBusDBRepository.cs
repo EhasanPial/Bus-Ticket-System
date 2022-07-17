@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bus_Ticket_System.Models
 {
+
     public class ClassBusDBRepository : IBusDBRepository
     {
         public readonly AppDbContext context;
@@ -121,6 +122,15 @@ namespace Bus_Ticket_System.Models
         {
             return context.Tickets.Find(id);
         }
+         
+        public Ticket UpdateTicket(Ticket newticket)
+        {
+            var ticket = context.Tickets.Attach(newticket);
+            ticket.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return newticket;
+        }
+
 
         public IEnumerable<BusSeatNew> GetAllBusSeats()
         {
@@ -154,6 +164,6 @@ namespace Bus_Ticket_System.Models
             return context.Vouchers.Find(id);
         }
 
-
+        
     }
 }

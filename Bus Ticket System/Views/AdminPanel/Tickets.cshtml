@@ -17,6 +17,8 @@
 
                 <th scope="col">ID</th>
                 <th scope="col">Bus ID</th>
+                <th scope="col">Validity</th>
+                <th scope="col">Trans ID</th>
                 <th scope="col">Seat No</th>
                 <th scope="col">Customer Name</th>
                 <th scope="col">Cost</th>
@@ -25,6 +27,7 @@
                 <th scope="col">Purchase Time</th>
                 <th scope="col">Journey Time</th>
                 <th scope="col">Food</th>
+                <th scope="col">Action</th>
 
 
             </tr>
@@ -43,6 +46,24 @@
                         <td>
                             @Model.ElementAt(i).busId
                         </td>
+
+                        @if (Model.ElementAt(i).isConfirmed == 1)
+                        {
+                            <td class="text-warning"><strong>Not Confirmed</strong></td>
+                        }
+                        else if (Model.ElementAt(i).isConfirmed == 2)
+                        {
+                            <td class="text-success"><strong>Confirmed</strong></td>
+                        }
+                        else
+                        {
+                            <td class="text-danger"><strong>Canceled</strong></td>
+                        }
+                        <td class="text-success">
+                            @Model.ElementAt(i).transactionNumber
+
+                        </td>
+
                         <td>
                             @Model.ElementAt(i).currentAva
 
@@ -79,14 +100,20 @@
                         }
 
 
-                        @*  <td>
+                        <td>
                             <div>
+                                <a class="col-sm-1 m-3" asp-action="ConfirmTikcet" asp-route-id="@Model.ElementAt(i).Id"><i class="fa-solid fa-circle-check text-success"></i></a>
+                                <a class="col-sm-1 m-3" asp-action="CancelTikcet" asp asp-route-id="@Model.ElementAt(i).Id"><i class="fa-solid fa-rectangle-xmark text-danger"></i></a>
 
-                            <a class="col-sm-1 m-1" asp-action="ticketDelete" asp asp-route-id="@voucher.Id"><i class="fa-solid fa-trash text-danger"></i></a>
                             </div>
-                            </td>
-                        *@
+                        </td>
                     </tr>
+
+
+
+
+
+
                 }
 
 

@@ -9,7 +9,31 @@
     @{
         foreach (Ticket userTicket in Model)
         {
+
             <div class="row_x">
+
+                <div class="row">
+                    <span class="col-sm-3 font-weight-bolder">Validity:</span>
+
+                    @{
+                        if (@userTicket.isConfirmed == 1)
+                        {
+                            <span class="text-black col-sm-3 details_x bg-warning">No confirmed yet</span>
+                        }
+                        else if (@userTicket.isConfirmed == 2)
+                        {
+                            <span class="text-black col-sm-3 details_x bg-success">Confirmed</span>
+                        }
+
+                        else
+                        {
+                            <span class="text-black col-sm-3 details_x bg-danger">Canceled by admin</span>
+
+                        }
+                    }
+
+                </div>
+
                 <div class="row">
                     <span class="col-sm-3 font-weight-bolder">Ticket Number:</span>
 
@@ -69,7 +93,7 @@
                 <div class="row">
                     <span class="col-sm-3 font-weight-bolder">Journey Time:</span>
 
-                    <span class="col-sm-3 details_x">@userTicket.journeyTime.ToString("D") @userTicket.busTime.ToString("hh:mm:tt")</span>
+                    <span class="col-sm-3 details_x">@userTicket.journeyTime.ToString("d") @userTicket.busTime.ToString("hh:mm:tt")</span>
 
                 </div>
 

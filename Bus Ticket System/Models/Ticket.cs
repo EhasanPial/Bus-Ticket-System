@@ -4,6 +4,8 @@ namespace Bus_Ticket_System.Models
 {
     public class Ticket
     {
+       
+
         [Key]
         public int Id { get; set; }
         public int busId { get; set; }
@@ -20,5 +22,8 @@ namespace Bus_Ticket_System.Models
 
         public string userId { get; set; }
         public bool checkFood { get; set; }
+        public  int isConfirmed { get; set; }
+        public  string transactionNumber { get; set; }
+        public  string phone { get; set; }
     }
 }

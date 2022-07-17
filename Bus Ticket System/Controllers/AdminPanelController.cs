@@ -41,9 +41,9 @@ namespace Bus_Ticket_System.Controllers
             List<Ticket> ticketList = new List<Ticket>();
 
             int total_sell = 0;
-            for (int i = ticket.Count()-1; i >=0; i--)
+            for (int i = ticket.Count() - 1; i >= 0; i--)
             {
-                if (i >= ticket.Count()-6)
+                if (i >= ticket.Count() - 6)
                     ticketList.Add(ticket.ElementAt(i));
                 total_sell += ticket.ElementAt(i).cost;
             }
@@ -205,6 +205,28 @@ namespace Bus_Ticket_System.Controllers
             _busDBRepository.DeleteBusSeat(busSeatId);
             return RedirectToAction("Bus", "AdminPanel");
         }
+
+        [Route("/ConfirmTicket/{id}")]
+        public IActionResult ConfirmTikcet(int id)
+        {
+            Ticket ticket = _busDBRepository.GetTicket(id);
+            ticket.isConfirmed = 2;
+            _busDBRepository.UpdateTicket(ticket);
+            return RedirectToAction("Tickets", "AdminPanel");
+        }
+
+
+        [Route("/CancelTicket/{id}")]
+        public IActionResult CancelTikcet(int id)
+        {
+            Ticket ticket = _busDBRepository.GetTicket(id);
+            ticket.isConfirmed = 3;
+            _busDBRepository.UpdateTicket(ticket);
+
+            return RedirectToAction("Tickets", "AdminPanel");
+        }
+
+
 
         [Route("Edit")]
         [HttpGet]

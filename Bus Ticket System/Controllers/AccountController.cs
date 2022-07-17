@@ -46,6 +46,8 @@ namespace Bus_Ticket_System.Controllers
                 {
                     await signInManager.SignInAsync(user, isPersistent: false);
 
+                    // -------------------- COOKIE --------------------------------//
+
                     CookieOptions cookieOptions = new CookieOptions();
                     cookieOptions.Expires = DateTime.Now.AddDays(2);
                     Response.Cookies.Append("user_name",user.UserName,cookieOptions);
